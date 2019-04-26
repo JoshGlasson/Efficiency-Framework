@@ -21,7 +21,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
-    private String time;
+    private String time_stamp;
 
     private Post() {}
 
@@ -30,7 +30,7 @@ public class Post {
         Date date = new Date();
 
         this.content = content;
-        this.time = dateFormat.format(date);
+        this.time_stamp = dateFormat.format(date);
     }
 
 }

@@ -6,6 +6,9 @@ const Post = (props) => {
 			<div className='post-content'>
 				{props.post.content}
 			</div>
+			<div className='post-time'>
+                {props.post.time_stamp}
+            </div>
 		</div>
 	)
 }
