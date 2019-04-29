@@ -53,5 +53,16 @@ public class HomeController {
 		return new RedirectView("/");
 	}
 
+	@GetMapping(value = "user/signin")
+	public String signIn(Model model) {
+		model.addAttribute("user", new SignInForm("email", "password"));
+		return "signin";
+	}
+
+	@PostMapping(value = "user/authentication")
+	public RedirectView signIn(@ModelAttribute User user) {
+		System.out.println(userRepository.findByEmailIn(user.getEmail()));
+		return new RedirectView("/");
+	}
 
 }

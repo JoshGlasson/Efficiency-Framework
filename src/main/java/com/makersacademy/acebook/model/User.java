@@ -35,5 +35,9 @@ public class User {
        return this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
+    public String getEmail(){
+        return this.email;
+    }
+
 }
 
