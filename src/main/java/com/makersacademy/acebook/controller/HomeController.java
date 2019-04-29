@@ -60,8 +60,13 @@ public class HomeController {
 	}
 
 	@PostMapping(value = "user/authentication")
-	public RedirectView signIn(@ModelAttribute User user) {
-		System.out.println(userRepository.findByEmailIn(user.getEmail()));
+	public RedirectView signIn(@ModelAttribute SignInForm user) {
+		if (SignIn.checkPassword(user.getPassword(),userRepository.findByEmailIn(user.getEmail()).getPassword())){
+			System.out.println("user matches");
+		}
+		else {
+			System.out.println("does not match");
+		}
 		return new RedirectView("/");
 	}
 
