@@ -2,10 +2,6 @@ package com.makersacademy.acebook.model;
 
 import org.junit.Test;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.*;
 
