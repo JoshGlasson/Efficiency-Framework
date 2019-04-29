@@ -7,6 +7,7 @@ import javax.persistence.Table;
 import javax.persistence.GenerationType;
 
 import lombok.Data;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 @Data
 @Entity
@@ -20,14 +21,19 @@ public class User {
     private String email;
     private String password;
 
-    private User() {}
+    private User() {
+
+    }
 
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
-        this.password = password;
+        this.password = this.setPassword(password);
     }
 
+    public String setPassword(String password) {
+       return this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+    }
 
 }
 
