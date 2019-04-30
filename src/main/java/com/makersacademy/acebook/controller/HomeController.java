@@ -22,11 +22,13 @@ public class HomeController extends HttpServlet {
 
 	private final PostRepository postRepository;
 	private final UserRepository userRepository;
+	private final CommentRepository commentRepository;
 
 	@Autowired
-	public HomeController(PostRepository postRepository, UserRepository userRepository) {
+	public HomeController(PostRepository postRepository, UserRepository userRepository, CommentRepository commentRepository) {
 		this.postRepository = postRepository;
 		this.userRepository = userRepository;
+		this.commentRepository = commentRepository;
 	}
 
 	@RequestMapping(value = "/")
@@ -89,6 +91,25 @@ public class HomeController extends HttpServlet {
 	public RedirectView signOut(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.setAttribute("current user", null);
+		return new RedirectView("/");
+	}
+
+	@GetMapping(value = "/comment")
+	public ModelAndView comment(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("current user") != null) {
+			model.addAttribute("comment", new CommentForm("Content"));
+			System.out.println(session.getAttribute("current user"));
+			return new ModelAndView("comment");
+		} else {
+			System.out.println(session.getAttribute("current user"));
+			return new ModelAndView(new RedirectView("/user/new"));
+		}
+	}
+
+	@PostMapping(value = "/comment")
+	public RedirectView comment(@ModelAttribute Comment comment) {
+		commentRepository.save(comment);
 		return new RedirectView("/");
 	}
 
