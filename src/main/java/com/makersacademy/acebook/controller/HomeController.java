@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
@@ -17,6 +18,7 @@ public class HomeController {
 	private final PostRepository postRepository;
 	private final UserRepository userRepository;
 
+	private  User currentUser = null;
 
 	@Autowired
 	public HomeController(PostRepository postRepository, UserRepository userRepository) {
@@ -26,13 +28,17 @@ public class HomeController {
 
 	@RequestMapping(value = "/")
 	public String index() {
+		System.out.println(this.currentUser);
 		return "index";
 	}
 
 	@GetMapping(value = "/post")
-	public String post(Model model) {
-		model.addAttribute("post", new PostForm("Content"));
-		return "post";
+	public ModelAndView post(Model model) {
+		if (this.currentUser != null) {
+			model.addAttribute("post", new PostForm("Content"));
+			return new ModelAndView("post");
+		} else {
+			return new ModelAndView(new RedirectView("/user/new"));		}
 	}
 
 	@PostMapping(value = "/post")
@@ -62,9 +68,10 @@ public class HomeController {
 	@PostMapping(value = "user/authentication")
 	public RedirectView signIn(@ModelAttribute SignInForm user) {
 		if (SignIn.checkPassword(user.getPassword(),userRepository.findByEmailIn(user.getEmail()).getPassword())){
-			System.out.println("user matches");
+			this.currentUser = userRepository.findByEmailIn(user.getEmail());
 		}
 		else {
+			this.currentUser = null;
 			System.out.println("does not match");
 		}
 		return new RedirectView("/");
