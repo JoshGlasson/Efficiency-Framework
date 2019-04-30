@@ -1,8 +1,8 @@
 package com.makersacademy.acebook.repository;
 
-import com.makersacademy.acebook.model.Post;
+import com.makersacademy.acebook.model.Comment;
 import org.springframework.data.repository.CrudRepository;
 
-public interface CommentRepository extends CrudRepository<Post, Long> {
+public interface CommentRepository extends CrudRepository<Comment, Long> {
 
 }

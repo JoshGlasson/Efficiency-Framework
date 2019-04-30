@@ -5,10 +5,7 @@ import com.makersacademy.acebook.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -94,11 +91,13 @@ public class HomeController extends HttpServlet {
 		return new RedirectView("/");
 	}
 
-	@GetMapping(value = "/comment")
-	public ModelAndView comment(Model model, HttpServletRequest request) {
+	@GetMapping(value = "/post/{post_id}/comment")
+	public ModelAndView comment(Model model, HttpServletRequest request, @PathVariable Long post_id) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("current user") != null) {
-			model.addAttribute("comment", new CommentForm("Content"));
+			System.out.println(post_id);
+			model.addAttribute("comment", new CommentForm("Content", post_id));
+			System.out.println(post_id);
 			System.out.println(session.getAttribute("current user"));
 			return new ModelAndView("comment");
 		} else {
@@ -109,6 +108,7 @@ public class HomeController extends HttpServlet {
 
 	@PostMapping(value = "/comment")
 	public RedirectView comment(@ModelAttribute Comment comment) {
+		System.out.println(comment);
 		commentRepository.save(comment);
 		return new RedirectView("/");
 	}

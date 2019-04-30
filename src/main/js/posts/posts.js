@@ -25,6 +25,7 @@ class Posts extends React.Component {
     return new Date(b.time_stamp) - new Date(a.time_stamp);
     }).map(post =>
 			<Post key={post._links.self.href} post={post}/>
+
 		);
   }
 }

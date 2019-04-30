@@ -11,8 +11,12 @@ const Post = (props) => {
 			<div className='post-time'>
                 {props.post.time_stamp}
             </div>
+            <a href={"post/"+props.post._links.self.href.split("/")[props.post._links.self.href.split("/").length-1]+"/comment"}>Comment!</a>
 		</div>
 	)
 }
 
 export default Post;
+
+
+// props.post._links.self.href.split("/").length-1 gives us the 5th element of the array which is our post ID

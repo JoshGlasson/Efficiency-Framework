@@ -26,13 +26,13 @@ public class Comment {
 
     private Comment() {}
 
-    public Comment(String content) {
+    public Comment(String content, Long post_id) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
 
         this.content = content;
         this.time_stamp = dateFormat.format(date);
-        this.post_id =
+        this.post_id = post_id;
     }
 
 
