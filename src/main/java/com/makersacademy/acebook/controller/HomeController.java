@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.*;
+import java.io.PrintWriter;
+
 @Controller
-public class HomeController {
+public class HomeController extends HttpServlet {
 
 	private final PostRepository postRepository;
 	private final UserRepository userRepository;
-
-	private  User currentUser = null;
 
 	@Autowired
 	public HomeController(PostRepository postRepository, UserRepository userRepository) {
@@ -27,18 +30,23 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/")
-	public String index() {
-		System.out.println(this.currentUser);
+	public String index(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("current user"));
 		return "index";
 	}
 
 	@GetMapping(value = "/post")
-	public ModelAndView post(Model model) {
-		if (this.currentUser != null) {
+	public ModelAndView post(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("current user") != null) {
 			model.addAttribute("post", new PostForm("Content"));
+			System.out.println(session.getAttribute("current user"));
 			return new ModelAndView("post");
 		} else {
-			return new ModelAndView(new RedirectView("/user/new"));		}
+			System.out.println(session.getAttribute("current user"));
+			return new ModelAndView(new RedirectView("/user/new"));
+		}
 	}
 
 	@PostMapping(value = "/post")
@@ -66,14 +74,21 @@ public class HomeController {
 	}
 
 	@PostMapping(value = "user/authentication")
-	public RedirectView signIn(@ModelAttribute SignInForm user) {
+	public RedirectView signIn(@ModelAttribute SignInForm user, HttpServletRequest request) {
 		if (SignIn.checkPassword(user.getPassword(),userRepository.findByEmailIn(user.getEmail()).getPassword())){
-			this.currentUser = userRepository.findByEmailIn(user.getEmail());
+			HttpSession session = request.getSession();
+			session.setAttribute("current user", userRepository.findByEmailIn(user.getEmail()));
 		}
 		else {
-			this.currentUser = null;
 			System.out.println("does not match");
 		}
+		return new RedirectView("/");
+	}
+
+	@GetMapping(value = "user/signout")
+	public RedirectView signOut(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.setAttribute("current user", null);
 		return new RedirectView("/");
 	}
 
