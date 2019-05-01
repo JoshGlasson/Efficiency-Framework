@@ -60,4 +60,6 @@ Flyway is being used to manage your database migrations. Use the flyway docs to 
 
 ### CI
 
-- to be configured
+Using Travis CI
+
+![travis status](https://travis-ci.com/JoshGlasson/acebook-java-template.svg?branch=master)
