@@ -3,6 +3,8 @@ package com.makersacademy.acebook.repository;
 import com.makersacademy.acebook.model.Comment;
 import org.springframework.data.repository.CrudRepository;
 
-public interface CommentRepository extends CrudRepository<Comment, Long> {
+import java.util.List;
 
+public interface CommentRepository extends CrudRepository<Comment, Long> {
+    List<Comment> findByPostid(Long post_id);
 }
