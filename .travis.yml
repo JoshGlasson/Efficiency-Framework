@@ -1,2 +1,8 @@
 language: java
-
+deploy:
+  provider: heroku
+  api_key:
+    secure: VfLTYpVuA6qKaK/QQdNYqZNZDek8co7lH0ntd2nMbrj6SrwATMjKdjaO/zXYvfv1xFG84w6DtJqQOk4J3/TfwumBEnE7Wnq5AAGEaSlNYy0ktgROHHKNsPNJoqYoKMO3ReMJR3faOI+tEQsxxPIwNTGVOMzRHAMc+At843F7NNvBsOoiIE7t6I+d55njwqt88lncuJb88BA+NcfEHWztUzjSD4dGO1UWwg4c99vc5LO53SdG7o9m6G/XMYoA4S6xljgPblIfbRUyzRGjTN1aktmL87E+Jaf7w/gOh3xRdt+LNoiSJwd1eWtRGDnLE/5LY8KbrcL16dcxJFXs4jqP472dMNvGcyFjNVuR31mlMs825jxFfIM/dW8vMvXZyaNailR8bYzSEbDWArQMvQs/BbA5Tkr7/42hdUWouUsg1GyLNURr181xgJptJZj2Sp2DJKphNsRAEvWjiGm95XVvl/IjcLQV+Ess49FuhUFs0/tZv0SrTBWSU/Y+ezhZS0pwUJnX4JkxEod8qagy/wZFDIHTn0XHnnPr3aEJMgjF5rdU6DXMPxaIUfQ+ZGEO2ZMhH1diLo+CGfIJLOqLKrbi4/kYEbB1+ULvyfGvFbqVAsKwVCvJcz3smodygVmpeZcMaAD2WNYg3ByfWorNEMdEJmfcC0NyFq7vjleMvSzpk2A=
+  app: morning-journey-46166
+  on:
+    repo: JoshGlasson/acebook-java-template
