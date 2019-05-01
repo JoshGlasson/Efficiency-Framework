@@ -30,6 +30,7 @@ render () {
 			<div className='post-time'>
                 {this.props.post.time_stamp}
             </div>
+             <h5>Comments</h5>
             <div className='comments-item'>
               				{this.getComments()}
               			</div>
