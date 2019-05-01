@@ -1,10 +1,6 @@
 package com.makersacademy.acebook.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 
 import lombok.Data;
 
@@ -22,7 +18,8 @@ public class Comment {
     private Long id;
     private String content;
     private String time_stamp;
-    private Long post_id;
+    @Column(name = "post_id", nullable = false)
+    private Long postid;
 
     private Comment() {}
 
@@ -32,7 +29,7 @@ public class Comment {
 
         this.content = content;
         this.time_stamp = dateFormat.format(date);
-        this.post_id = post_id;
+        this.postid = post_id;
     }
 
 
