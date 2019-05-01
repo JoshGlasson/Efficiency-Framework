@@ -6,9 +6,11 @@ class Post extends React.Component {
 //const id = this.props.post._links.self.href.split("/")[this.props.post._links.self.href.split("/").length-1];
   constructor(props) {
     super(props)
-    this.state = {comments: []};
+    this.state = {comments: [], likes: 0};
     this.getComments = this.getComments.bind(this);
     this.id = this.props.post._links.self.href.split("/")[this.props.post._links.self.href.split("/").length-1];
+    this.Likes= this.Likes.bind(this);
+
 
   }
 
@@ -30,6 +32,9 @@ render () {
 			<div className='post-time'>
                 {this.props.post.time_stamp}
             </div>
+            <button onClick={this.Likes()}>
+             Likes {this.state.likes}
+            </button>
              <h5>Comments</h5>
             <div className='comments-item'>
               				{this.getComments()}
@@ -44,6 +49,11 @@ render () {
     			<Comment key={comment._links.self.href} comment={comment}/>
 
     		);
+      }
+
+      Likes() {
+       console.log(this.state.likes);
+       return this.setState(state => ({likes: state.likes }));
       }
 }
 export default Post;
