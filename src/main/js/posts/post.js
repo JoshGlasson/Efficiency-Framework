@@ -3,7 +3,6 @@ import Comment from './comment';
 const client = require('../client');
 
 class Post extends React.Component {
-//const id = this.props.post._links.self.href.split("/")[this.props.post._links.self.href.split("/").length-1];
   constructor(props) {
     super(props)
     this.state = {comments: [], likes: 0};
@@ -32,7 +31,7 @@ render () {
 			<div className='post-time'>
                 {this.props.post.time_stamp}
             </div>
-            <button onClick={this.Likes()}>
+            <button onClick={this.Likes}>
              Likes {this.state.likes}
             </button>
              <h5>Comments</h5>
@@ -52,8 +51,7 @@ render () {
       }
 
       Likes() {
-       console.log(this.state.likes);
-       return this.setState(state => ({likes: state.likes }));
+       return this.setState(state => ({likes: state.likes + 1}));
       }
 }
 export default Post;
