@@ -3,14 +3,17 @@ import Comment from './comment';
 const client = require('../client');
 
 class Post extends React.Component {
+//const id = this.props.post._links.self.href.split("/")[this.props.post._links.self.href.split("/").length-1];
   constructor(props) {
     super(props)
     this.state = {comments: []};
     this.getComments = this.getComments.bind(this);
+    this.id = this.props.post._links.self.href.split("/")[this.props.post._links.self.href.split("/").length-1];
+
   }
 
   componentDidMount() {
-    client({method: 'GET', path: '/api/comments'}).then(response => {
+    client({method: 'GET', path: '/api/comments/search/findByPostid?post_id=' + this.id}).then(response => {
       this.setState({comments: response.entity._embedded.comments});
     });
   }
@@ -30,7 +33,7 @@ render () {
             <div className='comments-item'>
               				{this.getComments()}
               			</div>
-            <a href={"post/"+this.props.post._links.self.href.split("/")[this.props.post._links.self.href.split("/").length-1]+"/comment"}>Comment!</a>
+            <a href={"post/"+this.id+"/comment"}>Comment!</a>
 		</div>
 	)
     }
