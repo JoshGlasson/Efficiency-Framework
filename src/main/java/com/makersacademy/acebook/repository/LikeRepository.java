@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface LikeRepository extends CrudRepository<Like, Long> {
     List<Like> findByPostid(Long postid);
+    List<Like> findByPostidAndUserid(Long postid, List<Long> userid);
 }

@@ -5,7 +5,7 @@ const client = require('../client');
 class Post extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {comments: [], likes: [], userid: document.getElementById("userid").value, toggle: null};
+    this.state = {comments: [], likes: [], userid: document.getElementById("userid").value, toggle: null, likeid: 0};
     console.log(this.state.userid);
     this.getComments = this.getComments.bind(this);
     this.id = this.props.post._links.self.href.split("/")[this.props.post._links.self.href.split("/").length-1];
@@ -15,7 +15,14 @@ class Post extends React.Component {
               console.log(this.state.likes);
               this.state.toggle = this.state.likes.includes(this.state.userid);
          });
-  }
+     client({method: 'GET', path: '/api/likes/search/findByPostidAndUserid?postid='+ this.id +'&userid='+ this.state.userid}).then(response => {
+                    console.log(response.entity._embedded.likes[0]._links.self.href.split("/")[response.entity._embedded.likes[0]._links.self.href.split("/").length-1])
+                    this.setState({likeid: response.entity._embedded.likes[0]._links.self.href.split("/")[response.entity._embedded.likes[0]._links.self.href.split("/").length-1]})
+                    console.log(this.state.likeid)
+                });
+    }
+
+  // response.entity._embedded.likes[0]._links.self.href.split("/")[response.entity._embedded.likes[0]._links.self.href.split("/").length-1]
 
   componentDidMount() {
     client({method: 'GET', path: '/api/comments/search/findByPostid?post_id=' + this.id}).then(response => {
@@ -61,12 +68,45 @@ render () {
       }
 
       Likes() {
+      if(this.state.userid !== "") {
       if(this.state.toggle) {
+      console.log("Pre Fetch")
+      client({method: 'GET', path: '/api/likes/search/findByPostidAndUserid?postid='+ this.id +'&userid='+ this.state.userid}).then(response => {
+               console.log(response.entity._embedded.likes[0]._links.self.href.split("/")[response.entity._embedded.likes[0]._links.self.href.split("/").length-1])
+               this.setState({likeid: response.entity._embedded.likes[0]._links.self.href.split("/")[response.entity._embedded.likes[0]._links.self.href.split("/").length-1]})
+               console.log(this.state.likeid)
+               fetch('/api/likes/'+ this.state.likeid, {
+                               method: 'DELETE',
+                               headers: {
+                                 'Accept': 'application/json',
+                                 'Content-Type': 'application/json',
+                               },
+                             })
+           });
+
+
+              console.log("Post Fetch")
         this.state.likes.splice(this.state.likes.indexOf(this.state.userid));
       } else {
+      console.log("Pre Fetch")
+
+        fetch('/api/likes', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            postid: this.id,
+            userid: this.state.userid,
+          })
+        })
+        console.log("Post Fetch")
+
         this.state.likes.push(this.state.userid);
       }
       return this.setState(state => ({toggle: !state.toggle}));
+      }
       }
 
 

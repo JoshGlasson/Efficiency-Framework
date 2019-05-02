@@ -43,9 +43,9 @@ public class User {
         return this.password;
     }
 
-//    public Long getId(){
-//        return this.id;
-//    }
+    public Long getId(){
+        return this.id;
+    }
 
 }
 
