@@ -5,7 +5,8 @@ const client = require('../client');
 class Post extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {comments: [], likes: 0};
+    this.state = {comments: [], likes: 0, userid: document.getElementById("userid").value};
+    console.log(this.state.userid);
     this.getComments = this.getComments.bind(this);
     this.id = this.props.post._links.self.href.split("/")[this.props.post._links.self.href.split("/").length-1];
     this.Likes= this.Likes.bind(this);

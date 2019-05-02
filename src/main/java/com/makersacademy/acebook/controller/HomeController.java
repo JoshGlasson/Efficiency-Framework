@@ -29,8 +29,14 @@ public class HomeController extends HttpServlet {
 	}
 
 	@RequestMapping(value = "/")
-	public String index(HttpServletRequest request) {
+	public String index(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
+		if (session.getAttribute("current user") != null) {
+			User user = (User) session.getAttribute("current user");
+			System.out.println(user.getId());
+			model.addAttribute("user_id", user.getId());
+		}
+
 		System.out.println(session.getAttribute("current user"));
 		return "index";
 	}
