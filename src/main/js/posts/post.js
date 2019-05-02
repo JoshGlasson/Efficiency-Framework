@@ -5,19 +5,21 @@ const client = require('../client');
 class Post extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {comments: [], likes: 0, userid: document.getElementById("userid").value};
+    this.state = {comments: [], likes: [], userid: document.getElementById("userid").value, toggle: false};
     console.log(this.state.userid);
     this.getComments = this.getComments.bind(this);
     this.id = this.props.post._links.self.href.split("/")[this.props.post._links.self.href.split("/").length-1];
     this.Likes= this.Likes.bind(this);
-
-
+//    this.setToggle= this.setToggle.bind(this);
   }
 
   componentDidMount() {
     client({method: 'GET', path: '/api/comments/search/findByPostid?post_id=' + this.id}).then(response => {
       this.setState({comments: response.entity._embedded.comments});
     });
+    client({method: 'GET', path: '/api/likes/search/findByPostid?postid=' + this.id}).then(response => {
+          this.setState({likes: response.entity._embedded.likes.map(like => {return like.userid.toString();})});
+     });
   }
 
 
@@ -28,13 +30,18 @@ render () {
 				{this.props.post.content.split("\n").map((i,key) => {
                                                return <div key={key}>{i}</div>;
                                            })}
+
 			</div>
 			<div className='post-time'>
                 {this.props.post.time_stamp}
             </div>
-            <button onClick={this.Likes}>
-             Likes {this.state.likes}
-            </button>
+            <div className='post-likes'>
+                {this.setToggle()}
+                <button onClick={this.Likes}>
+                 {this.state.toggle ? 'Dislike' : 'Like'}
+                 {this.state.likes.length}
+                </button>
+            </div>
              <h5>Comments</h5>
             <div className='comments-item'>
               				{this.getComments()}
@@ -52,8 +59,19 @@ render () {
       }
 
       Likes() {
-       return this.setState(state => ({likes: state.likes + 1}));
+      if(this.state.toggle) {
+
       }
+
+//       return this.setState(state => ({toggle: !state.toggle}));
+      }
+
+      setToggle() {
+
+        return this.setState({toggle: this.state.likes.includes(this.state.userid)});
+      }
+
+
 }
 export default Post;
 
