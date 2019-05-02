@@ -38,7 +38,7 @@ render () {
             </div>
             <div className='post-likes'>
                 <button onClick={this.Likes}>
-                 {this.state.toggle ? 'Dislike' : 'Like'} {this.state.likes.length}
+                 {this.state.toggle ? 'Unlike' : 'Like'} {this.state.likes.length}
                 </button>
             </div>
              <h5>Comments</h5>
@@ -61,13 +61,12 @@ render () {
       }
 
       Likes() {
-
-
-
       if(this.state.toggle) {
-
+        this.state.likes.splice(this.state.likes.indexOf(this.state.userid));
+      } else {
+        this.state.likes.push(this.state.userid);
       }
-
+      return this.setState(state => ({toggle: !state.toggle}));
       }
 
 
