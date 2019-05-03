@@ -54,13 +54,29 @@ render () {
             <div className='comments-item'>
               				{this.getComments()}
               			</div>
-            <a href={"post/"+this.id+"/comment"}>Comment!</a>
-            <form action="/">
-              <div class="form-group">
-                <input type="text" class="form-control" id="comment-text"  placeholder="Add comment"></input>
-                <button type="button" class="btn btn-primary" onClick={this.sendComment} >Submit</button>
-              </div>
-             </form>
+                <br/>
+                 <div class="card">
+                        <div class="card-header" id={"heading"+this.id}>
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target={"#collapseTwo"+this.id} aria-expanded="true" aria-controls={"collapseTwo"+this.id}>
+                                    Add Comment
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id={"collapseTwo"+this.id} class="collapse" aria-labelledby={"heading"+this.id} data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="form-group">
+                                <form onSubmit={this.sendComment}>
+                                              <input type="text" class="form-control" id={"comment-text"+this.id}  placeholder="Add comment"></input>
+                                              <button type="button" class="btn btn-primary" onClick={this.sendComment} >Submit</button>
+                                  </form>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+
 
 
           </div>
@@ -79,7 +95,7 @@ render () {
       sendComment() {
           if(this.state.userid !== "") {
               const date = new Date();
-              console.log(document.getElementById("comment-text").value);
+              console.log(document.getElementById("comment-text"+this.id).value);
               console.log("Begining fetch comment");
               console.log(this.id);
               fetch('/api/comments', {
@@ -89,12 +105,14 @@ render () {
                           'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                          content: document.getElementById("comment-text").value ,
+                          content: document.getElementById("comment-text"+this.id).value ,
                           time_stamp: date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() ,
                           postid: this.id,
                         })
-                      });
+                      }).then(response =>{
+
                document.location.reload(true);
+               });
            }
       }
 
