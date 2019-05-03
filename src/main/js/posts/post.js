@@ -44,10 +44,11 @@ render () {
                 {this.props.post.time_stamp}
             </div>
             <div className='post-likes'>
-                <button onClick={this.Likes}>
+                <button onClick={this.Likes} type="button" class={this.state.toggle ? "btn btn-primary" : "btn btn-light"}>
                  {this.state.toggle ? 'Unlike' : 'Like'} {this.state.likes.length}
                 </button>
             </div>
+            <br>
              <h5>Comments</h5>
             <div className='comments-item'>
               				{this.getComments()}
@@ -58,14 +59,16 @@ render () {
     }
 
      getComments() {
-
-    console.log(this.state.toggle);
+        console.log(this.state.toggle);
 
         return this.state.comments.map(comment =>
     			<Comment key={comment._links.self.href} comment={comment}/>
-
     		);
       }
+//
+//      buttonClass() {
+//        return this.state.toggle ? "btn btn-primary" : "btn btn-light"
+//      }
 
       Likes() {
       if(this.state.userid !== "") {
