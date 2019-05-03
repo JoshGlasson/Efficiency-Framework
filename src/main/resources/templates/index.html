@@ -22,8 +22,9 @@
         <a class="btn btn-outline-success" href="user/new">Sign Up</a>
     </div>
 
-    <div th:if="${user_id}">
+    <div th:if="${user_id}" class="form-inline">
         <a class="navbar-brand" href="/">Acebook</a>
+        <a th:text="${user_name}" class="btn btn-outline-warning">Name</a> <br/>
         <a class="btn btn-outline-danger" href="user/signout">Sign Out</a>
     </div>
 </nav>

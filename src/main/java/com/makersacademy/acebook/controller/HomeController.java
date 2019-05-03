@@ -36,6 +36,7 @@ public class HomeController extends HttpServlet {
 			User user = (User) session.getAttribute("current user");
 			System.out.println(user.getId());
 			model.addAttribute("user_id", user.getId());
+			model.addAttribute("user_name", user.getName());
 			model.addAttribute("post", new PostForm("", user.getId()));
 		}
 		model.addAttribute("user", new SignInForm("", ""));
