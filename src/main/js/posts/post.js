@@ -33,6 +33,30 @@ class Post extends React.Component {
 
 
 render () {
+let commentBox;
+if(this.state.userid !== "") {
+commentBox = <div class="card">
+                                     <div class="card-header" id={"heading"+this.id}>
+                                         <h2 class="mb-0">
+                                             <button class="btn btn-link" type="button" data-toggle="collapse" data-target={"#collapseTwo"+this.id} aria-expanded="true" aria-controls={"collapseTwo"+this.id}>
+                                                 Add Comment
+                                             </button>
+                                         </h2>
+                                     </div>
+
+                                     <div id={"collapseTwo"+this.id} class="collapse" aria-labelledby={"heading"+this.id} data-parent="#accordionExample">
+                                         <div class="card-body">
+                                             <div class="form-group">
+                                             <form onSubmit={this.sendComment} action="/">
+                                                           <input type="text" class="form-control" id={"comment-text"+this.id}  placeholder="Add comment"></input>
+                                                           <a href="/"><button type="button" class="btn btn-primary" onClick={this.sendComment} >Submit</button></a>
+                                               </form>
+                                              </div>
+                                         </div>
+                                     </div>
+                             </div>
+}
+
 	return (
 		<div className='post-main'>
 			<div className='post-content'>
@@ -55,30 +79,7 @@ render () {
               				{this.getComments()}
               			</div>
                 <br/>
-                 <div class="card">
-                        <div class="card-header" id={"heading"+this.id}>
-                            <h2 class="mb-0">
-                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target={"#collapseTwo"+this.id} aria-expanded="true" aria-controls={"collapseTwo"+this.id}>
-                                    Add Comment
-                                </button>
-                            </h2>
-                        </div>
-
-                        <div id={"collapseTwo"+this.id} class="collapse" aria-labelledby={"heading"+this.id} data-parent="#accordionExample">
-                            <div class="card-body">
-                                <div class="form-group">
-                                <form onSubmit={this.sendComment}>
-                                              <input type="text" class="form-control" id={"comment-text"+this.id}  placeholder="Add comment"></input>
-                                              <button type="button" class="btn btn-primary" onClick={this.sendComment} >Submit</button>
-                                  </form>
-                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
+                {commentBox}
           </div>
 
 	)
@@ -109,10 +110,7 @@ render () {
                           time_stamp: date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() ,
                           postid: this.id,
                         })
-                      }).then(response =>{
-
-               document.location.reload(true);
-               });
+                      })
            }
       }
 
