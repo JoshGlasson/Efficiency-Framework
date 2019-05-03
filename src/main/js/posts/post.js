@@ -35,53 +35,68 @@ class Post extends React.Component {
 render () {
 let commentBox;
 if(this.state.userid !== "") {
-commentBox = <div class="card">
-                                     <div class="card-header" id={"heading"+this.id}>
-                                         <h2 class="mb-0">
-                                             <button class="btn btn-link" type="button" data-toggle="collapse" data-target={"#collapseTwo"+this.id} aria-expanded="true" aria-controls={"collapseTwo"+this.id}>
-                                                 Add Comment
-                                             </button>
-                                         </h2>
-                                     </div>
+commentBox =
+<div class="card">
+     <div class="card-header" id={"heading"+this.id}>
+         <h2 class="mb-0">
+             <button class="btn btn-link" type="button" data-toggle="collapse" data-target={"#collapseTwo"+this.id} aria-expanded="true" aria-controls={"collapseTwo"+this.id}>
+                 Add Comment
+             </button>
+         </h2>
+     </div>
 
-                                     <div id={"collapseTwo"+this.id} class="collapse" aria-labelledby={"heading"+this.id} data-parent="#accordionExample">
-                                         <div class="card-body">
-                                             <div class="form-group">
-                                             <form onSubmit={this.sendComment} action="/">
-                                                           <input type="text" class="form-control" id={"comment-text"+this.id}  placeholder="Add comment"></input>
-                                                           <a href="/"><button type="button" class="btn btn-primary" onClick={this.sendComment} >Submit</button></a>
-                                               </form>
-                                              </div>
-                                         </div>
-                                     </div>
-                             </div>
+     <div id={"collapseTwo"+this.id} class="collapse" aria-labelledby={"heading"+this.id} >
+         <div class="card-body">
+             <div class="form-group">
+             <form onSubmit={this.sendComment} action="/">
+                           <input type="text" class="form-control" id={"comment-text"+this.id}  placeholder="What would you like to say?"></input>
+                           <a href="/"><button type="button" class="btn btn-primary" onClick={this.sendComment} >Submit</button></a>
+               </form>
+              </div>
+         </div>
+     </div>
+</div>
 }
 
 	return (
 		<div className='post-main'>
+
 			<div className='post-content'>
 				{this.props.post.content.split("\n").map((i,key) => {
-                                               return <div key={key}>{i}</div>;
-                                           })}
-
+                       return <div key={key}>{i}</div>;
+                   })}
 			</div>
+
 			<div className='post-time'>
-                {this.props.post.time_stamp}
+                <small>{this.props.post.time_stamp}</small>
             </div>
+
             <div className='post-likes'>
                 <button onClick={this.Likes} type="button" class={this.state.toggle ? "btn btn-primary" : "btn btn-light"}>
                  {this.state.toggle ? 'Unlike' : 'Like'} {this.state.likes.length}
                 </button>
             </div>
-            <br />
-             <h5>Comments</h5>
-            <div className='comments-item'>
-              				{this.getComments()}
-              			</div>
-                <br/>
-                {commentBox}
-          </div>
 
+            <br />
+            <div className='comments-item'>
+                <div class="card">
+                     <div class="card-header" id={"comments"+this.id}>
+                         <h2 class="mb-0">
+                             <button class="btn btn-link" type="button" data-toggle="collapse" data-target={"#collapse"+this.id} aria-expanded="true" aria-controls={"collapse"+this.id}>
+                                 <h5>View Comments</h5>
+                             </button>
+                         </h2>
+                     </div>
+
+                     <div id={"collapse"+this.id} class="collapse" aria-labelledby={"comments"+this.id}>
+                         <div class="card-body">
+                             {this.getComments()}
+                         </div>
+                     </div>
+                {commentBox}
+                </div>
+            </div>
+        </div>
 	)
     }
 

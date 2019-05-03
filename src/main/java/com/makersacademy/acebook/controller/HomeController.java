@@ -63,7 +63,7 @@ public class HomeController extends HttpServlet {
 
 	@GetMapping(value = "user/new")
 	public String user(Model model) {
-		model.addAttribute("user", new UserForm("name", "email", "password"));
+		model.addAttribute("user", new UserForm("", "", ""));
 		return "register";
 	}
 

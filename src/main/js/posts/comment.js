@@ -9,7 +9,7 @@ const Comment = (props) => {
                                            })}
 			</div>
 			<div className='comment-time'>
-                {props.comment.time_stamp}
+                <small>{props.comment.time_stamp}</small>
             </div>
 		</div>
 	)
