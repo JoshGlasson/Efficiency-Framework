@@ -1,4 +1,7 @@
 language: java
+install: true
+script:
+  - mvn install
 deploy:
   provider: heroku
   api_key:

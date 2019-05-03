@@ -8,8 +8,8 @@ It uses:
   - `thymeleaf` to serve `index.html`
   - `react` to make requests to the api and render the component views
   - `flyway` to manage `postgres` db migrations
-  - 'travis' for CI
-  - 'heroku' for deployment
+  - `travis` for CI
+  - `githeroku` for deployment
 
 ### Card wall
 
