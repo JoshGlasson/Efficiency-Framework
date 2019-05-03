@@ -14,10 +14,13 @@ public class CommentForm {
 
     private Long post_id;
 
+    private Long userid;
 
-    public CommentForm(String content, Long post_id) {
+
+    public CommentForm(String content, Long post_id, Long userid) {
         this.content = content;
         this.post_id = post_id;
+        this.userid = userid;
     }
 
     public String getContent() {
@@ -29,5 +32,12 @@ public class CommentForm {
     }
 
 
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
+    }
 }
 

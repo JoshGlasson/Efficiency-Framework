@@ -31,29 +31,30 @@ public class HomeController extends HttpServlet {
 	@RequestMapping(value = "/")
 	public String index(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
+
 		if (session.getAttribute("current user") != null) {
 			User user = (User) session.getAttribute("current user");
 			System.out.println(user.getId());
 			model.addAttribute("user_id", user.getId());
+			model.addAttribute("post", new PostForm("", user.getId()));
 		}
 		model.addAttribute("user", new SignInForm("", ""));
-		model.addAttribute("post", new PostForm(""));
 		System.out.println(session.getAttribute("current user"));
 		return "index";
 	}
-
-	@GetMapping(value = "/post")
-	public ModelAndView post(Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		if (session.getAttribute("current user") != null) {
-			model.addAttribute("post", new PostForm("Content"));
-			System.out.println(session.getAttribute("current user"));
-			return new ModelAndView("post");
-		} else {
-			System.out.println(session.getAttribute("current user"));
-			return new ModelAndView(new RedirectView("/user/new"));
-		}
-	}
+//
+//	@GetMapping(value = "/post")
+//	public ModelAndView post(Model model, HttpServletRequest request) {
+//		HttpSession session = request.getSession();
+//		if (session.getAttribute("current user") != null) {
+//			model.addAttribute("post", new PostForm("Content", ));
+//			System.out.println(session.getAttribute("current user"));
+//			return new ModelAndView("post");
+//		} else {
+//			System.out.println(session.getAttribute("current user"));
+//			return new ModelAndView(new RedirectView("/user/new"));
+//		}
+//	}
 
 	@PostMapping(value = "/post")
 	public RedirectView post(@ModelAttribute Post post) {
@@ -97,21 +98,21 @@ public class HomeController extends HttpServlet {
 		session.setAttribute("current user", null);
 		return new RedirectView("/");
 	}
-
-	@GetMapping(value = "/post/{post_id}/comment")
-	public ModelAndView comment(Model model, HttpServletRequest request, @PathVariable Long post_id) {
-		HttpSession session = request.getSession();
-		if (session.getAttribute("current user") != null) {
-			System.out.println(post_id);
-			model.addAttribute("comment", new CommentForm("Content", post_id));
-			System.out.println(post_id);
-			System.out.println(session.getAttribute("current user"));
-			return new ModelAndView("comment");
-		} else {
-			System.out.println(session.getAttribute("current user"));
-			return new ModelAndView(new RedirectView("/user/new"));
-		}
-	}
+//
+//	@GetMapping(value = "/post/{post_id}/comment")
+//	public ModelAndView comment(Model model, HttpServletRequest request, @PathVariable Long post_id) {
+//		HttpSession session = request.getSession();
+//		if (session.getAttribute("current user") != null) {
+//			System.out.println(post_id);
+//			model.addAttribute("comment", new CommentForm("Content", post_id));
+//			System.out.println(post_id);
+//			System.out.println(session.getAttribute("current user"));
+//			return new ModelAndView("comment");
+//		} else {
+//			System.out.println(session.getAttribute("current user"));
+//			return new ModelAndView(new RedirectView("/user/new"));
+//		}
+//	}
 
 	@PostMapping(value = "/comment")
 	public RedirectView comment(@ModelAttribute Comment comment) {

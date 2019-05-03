@@ -43,6 +43,7 @@
                 <div>
                     <form action="#" th:action="@{/post}" th:object="${post}" method="post">
                         <textarea class="form-control" type="text" th:field="*{content}" placeholder="share your thoughts" />
+                        <input type="hidden" id="userid" th:field="*{userid}">
                         <input type="submit" value="Submit" class="btn btn-primary"/> <input type="reset" value="Reset" class="btn btn-dark"/>
                     </form>
                 </div>

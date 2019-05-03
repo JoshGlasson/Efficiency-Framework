@@ -5,7 +5,7 @@ const client = require('../client');
 class Post extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {comments: [], likes: [], userid: document.getElementById("userid").value, toggle: null, likeid: 0};
+    this.state = {comments: [], likes: [], userid: document.getElementById("userid").value, toggle: null, likeid: 0, username: null, commenter: null};
     console.log(this.state.userid);
     this.getComments = this.getComments.bind(this);
     this.sendComment = this.sendComment.bind(this);
@@ -21,6 +21,13 @@ class Post extends React.Component {
                     this.setState({likeid: response.entity._embedded.likes[0]._links.self.href.split("/")[response.entity._embedded.likes[0]._links.self.href.split("/").length-1]})
                     console.log(this.state.likeid)
                 });
+     client({method: 'GET', path: '/api/users/'+ this.props.post.userid}).then(response => {
+                console.log("USERID"+ this.props.post.userid);
+                console.log(response);
+                this.setState({username: response.entity.name});
+              });
+
+
     }
 
   // response.entity._embedded.likes[0]._links.self.href.split("/")[response.entity._embedded.likes[0]._links.self.href.split("/").length-1]
@@ -60,6 +67,9 @@ commentBox =
 
 	return (
 		<div className='post-main'>
+		    <div className='post-name'>
+                <strong>{this.state.username}</strong>
+            </div>
 
 			<div className='post-content'>
 				{this.props.post.content.split("\n").map((i,key) => {
@@ -104,7 +114,7 @@ commentBox =
         console.log(this.state.toggle);
 
         return this.state.comments.map(comment =>
-    			<Comment key={comment._links.self.href} comment={comment}/>
+            <Comment key={comment._links.self.href} comment={comment}/>
     		);
       }
 
@@ -124,6 +134,7 @@ commentBox =
                           content: document.getElementById("comment-text"+this.id).value ,
                           time_stamp: date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() ,
                           postid: this.id,
+                          userid: this.state.userid,
                         })
                       })
            }

@@ -22,15 +22,17 @@ public class Post {
     private Long id;
     private String content;
     private String time_stamp;
+    private Long userid;
 
     private Post() {}
 
-    public Post(String content) {
+    public Post(String content, Long userid) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
 
         this.content = content;
         this.time_stamp = dateFormat.format(date);
+        this.userid = userid;
     }
 
 

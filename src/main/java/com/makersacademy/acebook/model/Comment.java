@@ -20,16 +20,18 @@ public class Comment {
     private String time_stamp;
     @Column(name = "post_id", nullable = false)
     private Long postid;
+    private Long userid;
 
     private Comment() {}
 
-    public Comment(String content, Long post_id) {
+    public Comment(String content, Long post_id, Long userid) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
 
         this.content = content;
         this.time_stamp = dateFormat.format(date);
         this.postid = post_id;
+        this.userid = userid;
     }
 
 
