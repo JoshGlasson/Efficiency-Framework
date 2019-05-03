@@ -12,18 +12,44 @@
 
 
 <nav class="navbar navbar-dark bg-primary">
-    <div th:unless="${user_id}">
+    <div th:unless="${user_id}" class="form-inline">
         <a class="navbar-brand" href="/">Acebook</a>
-        <a class="btn btn-outline-dark" href="/">Home</a>
-        <a class="btn btn-outline-success" href="user/signin">Sign In</a>
+        <form class="form-inline" action="#" th:action="@{/user/authentication}" th:object="${user}" method="post">
+            <input class="form-control mr-sm-2" type="email" th:field="*{email}" required="true"/>
+            <input class="form-control mr-sm-2" type="password" th:field="*{password}" required="true"/>
+            <input type="submit" value="Sign In" class="btn btn-outline-success"/>
+        </form>
         <a class="btn btn-outline-success" href="user/new">Sign Up</a>
     </div>
+
     <div th:if="${user_id}">
         <a class="navbar-brand" href="/">Acebook</a>
-        <a class="btn btn-outline-dark" href="/">Home</a>
         <a class="btn btn-outline-danger" href="user/signout">Sign Out</a>
     </div>
 </nav>
+
+<div th:if="${user_id}" class="accordion" id="accordionExample">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Whats on your mind?
+                </button>
+            </h2>
+        </div>
+
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <div>
+                    <form action="#" th:action="@{/post}" th:object="${post}" method="post">
+                        <p>Post: <textarea class="form-control" type="text" th:field="*{content}" /></p>
+                        <p><input type="submit" value="Submit" class="btn btn-primary"/> <input type="reset" value="Reset" class="btn btn-dark"/></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <input type="hidden" id="userid" th:attr="value=${user_id}">
 
