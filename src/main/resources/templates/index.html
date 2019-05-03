@@ -6,7 +6,25 @@
     <title>Acebook</title>
     <link rel="stylesheet" href="/main.css" />
 </head>
+
+
 <body>
+
+
+<nav class="navbar navbar-dark bg-primary">
+    <div th:unless="${user_id}">
+        <a class="navbar-brand" href="/">Acebook</a>
+        <a class="btn btn-outline-dark" href="/">Home</a>
+        <a class="btn btn-outline-success" href="user/signin">Sign In</a>
+        <a class="btn btn-outline-success" href="user/new">Sign Up</a>
+    </div>
+    <div th:if="${user_id}">
+        <a class="navbar-brand" href="/">Acebook</a>
+        <a class="btn btn-outline-dark" href="/">Home</a>
+        <a class="btn btn-outline-danger" href="user/signout">Sign Out</a>
+    </div>
+</nav>
+
 <input type="hidden" id="userid" th:attr="value=${user_id}">
 
     <div id="app"></div>

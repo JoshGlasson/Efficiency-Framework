@@ -48,7 +48,7 @@ render () {
                  {this.state.toggle ? 'Unlike' : 'Like'} {this.state.likes.length}
                 </button>
             </div>
-            <br>
+            <br />
              <h5>Comments</h5>
             <div className='comments-item'>
               				{this.getComments()}
