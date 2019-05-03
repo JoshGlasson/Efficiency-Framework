@@ -42,7 +42,7 @@ public class HomeController extends HttpServlet {
 		System.out.println(session.getAttribute("current user"));
 		return "index";
 	}
-//
+
 //	@GetMapping(value = "/post")
 //	public ModelAndView post(Model model, HttpServletRequest request) {
 //		HttpSession session = request.getSession();
