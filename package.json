@@ -1,7 +1,7 @@
 {
-  "name": "acebook-template",
+  "name": "algorithmic-efficiency",
   "version": "1.0.0",
-  "description": "A template project for spring boot/react.js",
+  "description": "A timing framework to test efficiency",
   "main": "index.js",
   "dependencies": {
     "bootstrap": "^4.3.1",

@@ -1,4 +1,4 @@
-package com.makersacademy.acebook;
+package com.algorithmicefficiency;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

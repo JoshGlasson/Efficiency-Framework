@@ -1,11 +1,1 @@
 language: java
-install: true
-script:
-  - mvn install
-deploy:
-  provider: heroku
-  api_key:
-    secure: ATv2I5XqMyZcNSVY/17x0iplTFp6EJ339Bmiwp16QEWqsAUu80Rj2BHp/x2V44+vqiVAzWgZJgmr220yZOMl6VMRH0I6EWt4lU0ND9RED5N2NsGNbqBHlZbB+2sjKWKhLywqXpitgbaGbRoMMg6uD/14Br7bcDbmiKPITAV7z+qzDQkDgBgCZB+Eo1f21AGz7G1srEtiHMEZvNpKucxdGak88fpMxf08fCVOABfR3f0Z/VY/QN9L2tAX9+TuB1QkAV23DLNSnnpqIyDHXWKSeZnByvq/s2NpPi5FTV+Ts1B13QhrcTBb2DbtiKHGsirFLDXDphV/fq90cQqDlUwcJ+E+6JxJSYVlDJtYh1RWQHMk4VJvlJiRyVuzH9kPIW0cwUfaFmpUyEU8t67HYQbJ2JHWHIijIjjuJ2PGDBbAheOoVIj80kfZ1Oe6WpZEIMBWfgLUD87rQ12tAte6t4HWz4Jm11x6dVDt9DsstvdXsKbWzla38nKnTCqbBzQBGttnEtLNa7ascrXDARuDdOO2TDN1MFXDnNhOnWVBuwWGJih18tLeCbkKy0TXLAAk+doiezu1Z6BcX0MgSJVbWscol+FBvXzG9Sa/SoVPBhblAjQzGX6XyIZ9tFfW8Q/aho1xuf1srDkoA6oB6SW8i/4RfKN4Kspu1v5CCJ6gZfUy2K4=
-  app: morning-journey-46166
-  on:
-    repo: JoshGlasson/acebook-java-template
