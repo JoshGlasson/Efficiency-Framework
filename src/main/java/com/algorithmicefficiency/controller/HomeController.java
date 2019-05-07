@@ -20,11 +20,17 @@ public class HomeController {
 
 	@RequestMapping(value = "/")
 	public String index() {
+		return "index";
+	}
+
+	@GetMapping(value = "/sort")
+	public RedirectView sort() {
 		Sort sort = new Sort();
 		sortRepository.deleteAll();
+		sort.start();
 		sortRepository.save(sort);
 		System.out.println(sortRepository.findAll());
-		return "index";
+		return new RedirectView("/");
 	}
 
 

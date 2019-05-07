@@ -24,6 +24,10 @@ public class Sort{
     private String[] timeTaken = new String[10];
 
     public Sort() {
+
+    }
+
+    public void start() {
         for (int i = 0; i < this.arraySize.length; i++)
             this.timeTaken[i] = Double.toString(this.run(Integer.parseInt(this.arraySize[i])));
     }
