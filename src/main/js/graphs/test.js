@@ -44,7 +44,7 @@ constructor(props) {
             height: 500,
             title: 'Sort Algorithm',
             xaxis: {
-             title: 'Time Taken (Milliseconds)',
+             title: 'Items in Array',
              titlefont: {
                  family: 'Courier New, monospace',
                  size: 18,
@@ -52,7 +52,7 @@ constructor(props) {
              }
             },
             yaxis: {
-              title: 'Items in Array',
+              title: 'Time Taken (Milliseconds)',
               titlefont: {
                   family: 'Courier New, monospace',
                   size: 18,
