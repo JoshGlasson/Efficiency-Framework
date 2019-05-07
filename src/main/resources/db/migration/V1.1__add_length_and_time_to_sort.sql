@@ -1,4 +1,4 @@
 ALTER TABLE sort
-ADD COLUMN arraySize INTEGER,
-ADD COLUMN timeTaken FLOAT
+ADD COLUMN arraySize bytea,
+ADD COLUMN timeTaken bytea
 ;

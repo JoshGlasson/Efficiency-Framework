@@ -19,24 +19,13 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/")
-	public String index(Model model) {
-		model.addAttribute("arraySize", new Sort(null));
+	public String index() {
+		Sort sort = new Sort();
+		sortRepository.deleteAll();
+		sortRepository.save(sort);
+		System.out.println(sortRepository.findAll());
 		return "index";
 	}
-
-	@PostMapping(value = "/sort")
-	public RedirectView sort(@ModelAttribute Sort sort) {
-//		sortRepository.deleteAll();
-		sortRepository.save(sort);
-		return new RedirectView("/");
-	}
-
-//	@GetMapping(value = "/sort")
-//	public RedirectView graph(@ModelAttribute Sort sort) {
-//		sortRepository.deleteAll();
-//		sortRepository.save(sort);
-//		return new RedirectView("/");
-//	}
 
 
 }

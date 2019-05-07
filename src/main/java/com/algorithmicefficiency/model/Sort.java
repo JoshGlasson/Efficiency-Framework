@@ -19,24 +19,25 @@ public class Sort{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "arraysize", nullable = false)
-    private int arraySize;
+    private String[] arraySize = {"10", "100", "1000", "2000", "3000", "4000", "5000", "6000", "7000", "8000"};
     @Column(name = "timetaken", nullable = false)
-    private Double timeTaken;
+    private String[] timeTaken = new String[10];
 
-    private Sort() {};
+    public Sort() {
+        for (int i = 0; i < this.arraySize.length; i++)
+            this.timeTaken[i] = Double.toString(this.run(Integer.parseInt(this.arraySize[i])));
+    }
 
     // Setting size of array to test
-    public Sort(String arraySize) {
-        if (arraySize != null) {
-            this.arraySize = Integer.parseInt(arraySize);
+    public Double run(int size) {
 
             // Array Set Up
-            int[] arr = new int[this.arraySize];
+            int[] arr = new int[size];
 
-            for (int x = 1; x <= this.arraySize; x++) {
+            for (int x = 1; x <= size; x++) {
                 for (int i = 0; i < arr.length; i++) {
                     Random randomNum = new Random();
-                    arr[i] = randomNum.nextInt(this.arraySize);
+                    arr[i] = randomNum.nextInt(size);
                 }
             }
 
@@ -55,23 +56,13 @@ public class Sort{
             double rounded = bd.doubleValue();
 
             // Print results
-            System.out.printf("Modified arr[] : %s", Arrays.toString(arr));
-            System.out.println(" ");
-            this.timeTaken = rounded/1000000;
-            System.out.println("Time Elapsed: " + this.timeTaken);
-        }
+//            System.out.printf("Modified arr[] : %s", Arrays.toString(arr));
+//            System.out.println(" ");
+//            System.out.println("Time Elapsed: " + rounded/1000000);
+
+        return rounded / 1000000;
+
     }
 
-    public int getArraySize() {
-        return this.arraySize;
-    }
-
-    public Double getTimeTaken() {
-        return this.timeTaken;
-    }
-
-    public void setArraySize(int arraySize) {
-        this.arraySize = arraySize;
-    }
 
 }
