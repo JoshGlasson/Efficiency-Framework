@@ -19,9 +19,9 @@ public class Sort{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "arraysize", nullable = false)
-    private String[] arraySize = {"10", "100", "1000", "2000", "3000", "4000", "5000", "6000", "7000", "8000"};
+    private String[] arraySize = {"10", "50", "100", "250", "500", "1000", "2000", "3000", "4000", "5000", "6000", "7000", "8000", "9000", "10000"};
     @Column(name = "timetaken", nullable = false)
-    private String[] timeTaken = new String[10];
+    private String[] timeTaken = new String[arraySize.length];
 
     public Sort() {
 
@@ -46,11 +46,8 @@ public class Sort{
             }
 
             // Timing of Actual Function
-            System.out.println("Start");
             long start = System.nanoTime();
-
             Arrays.sort(arr);
-
             long finish = System.nanoTime();
             long timeElapsed = finish - start;
 
@@ -58,11 +55,6 @@ public class Sort{
             BigDecimal bd = new BigDecimal(timeElapsed);
             bd = bd.round(new MathContext(3));
             double rounded = bd.doubleValue();
-
-            // Print results
-//            System.out.printf("Modified arr[] : %s", Arrays.toString(arr));
-//            System.out.println(" ");
-//            System.out.println("Time Elapsed: " + rounded/1000000);
 
         return rounded / 1000000;
 

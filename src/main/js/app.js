@@ -8,7 +8,11 @@ class App extends React.Component {
 
   render() {
     return (
-        <Test />
+    <div>
+    <h1>Sort Test</h1>
+    <h2><a href="/sort">Re-do Sort</a></h2>
+    <Sort />
+    </div>
     )
   }
 }
