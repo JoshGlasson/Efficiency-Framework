@@ -23,6 +23,6 @@
     "start": "npm run webpack",
     "webpack": "webpack -d --watch"
   },
-  "author": "dearshrewdwit",
+  "author": "JoshGlasson",
   "license": "ISC"
 }

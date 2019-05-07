@@ -1,0 +1,4 @@
+ALTER TABLE sort
+ADD COLUMN arraySize INTEGER,
+ADD COLUMN timeTaken FLOAT
+;
