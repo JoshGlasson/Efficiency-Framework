@@ -35,9 +35,13 @@ public class HomeController {
 	@GetMapping(value = "/sort")
 	public RedirectView sort(RedirectAttributes redirAttrs) {
 		Sort sort = new Sort();
+		System.out.println("Class Created");
 		sortRepository.deleteAll();
+		System.out.println("Previous Data Deleted");
 		sort.start();
+		System.out.println("Data Run. Saving...");
 		sortRepository.save(sort);
+		System.out.println("Finished Updating");
 		redirAttrs.addFlashAttribute("message", "Sort Data Refreshed: ");
 		redirAttrs.addFlashAttribute("newdata", ""+ sortRepository.findAll() +"");
 		return new RedirectView("/sortgraph");
@@ -46,9 +50,13 @@ public class HomeController {
 	@GetMapping(value = "/reverse")
 	public RedirectView reverse(RedirectAttributes redirAttrs) {
 		Reverse reverse = new Reverse();
+		System.out.println("Class Created");
 		reverseRepository.deleteAll();
+		System.out.println("Previous Data Deleted");
 		reverse.start();
+		System.out.println("Data Run. Saving...");
 		reverseRepository.save(reverse);
+		System.out.println("Finished Updating");
 		redirAttrs.addFlashAttribute("message", "Reverse Data Refreshed: ");
 		redirAttrs.addFlashAttribute("newdata", ""+ reverseRepository.findAll() +"");
 		return new RedirectView("/reversegraph");
@@ -57,9 +65,13 @@ public class HomeController {
 	@GetMapping(value = "/shuffle")
 	public RedirectView shuffle(RedirectAttributes redirAttrs) {
 		Shuffle shuffle = new Shuffle();
+		System.out.println("Class Created");
 		shuffleRepository.deleteAll();
+		System.out.println("Previous Data Deleted");
 		shuffle.start();
+		System.out.println("Data Run. Saving...");
 		shuffleRepository.save(shuffle);
+		System.out.println("Finished Updating");
 		redirAttrs.addFlashAttribute("message", "Shuffle Data Refreshed: ");
 		redirAttrs.addFlashAttribute("newdata", ""+ shuffleRepository.findAll() +"");
 		return new RedirectView("/shufflegraph");
@@ -68,9 +80,13 @@ public class HomeController {
 	@GetMapping(value = "/last")
 	public RedirectView last(RedirectAttributes redirAttrs) {
 		Last last = new Last();
+		System.out.println("Class Created");
 		lastRepository.deleteAll();
+		System.out.println("Previous Data Deleted");
 		last.start();
+		System.out.println("Data Run. Saving...");
 		lastRepository.save(last);
+		System.out.println("Finished Updating");
 		redirAttrs.addFlashAttribute("message", "Last Data Refreshed: ");
 		redirAttrs.addFlashAttribute("newdata", ""+ lastRepository.findAll() +"");
 		return new RedirectView("/lastgraph");
@@ -79,9 +95,13 @@ public class HomeController {
 	@GetMapping(value = "/duplicates")
 	public RedirectView duplicates(RedirectAttributes redirAttrs) {
 		Duplicates duplicates = new Duplicates();
+		System.out.println("Class Created");
 		duplicatesRepository.deleteAll();
+		System.out.println("Previous Data Deleted");
 		duplicates.start();
+		System.out.println("Data Run. Saving...");
 		duplicatesRepository.save(duplicates);
+		System.out.println("Finished Updating");
 		redirAttrs.addFlashAttribute("message", "Duplicates Data Refreshed: ");
 		redirAttrs.addFlashAttribute("newdata", ""+ duplicatesRepository.findAll() +"");
 		return new RedirectView("/duplicatesgraph");
@@ -89,26 +109,53 @@ public class HomeController {
 
 	@GetMapping(value = "/all")
 	public RedirectView all(RedirectAttributes redirAttrs) {
-		Reverse reverse = new Reverse();
 		reverseRepository.deleteAll();
-		reverse.start();
-		reverseRepository.save(reverse);
-		Sort sort = new Sort();
 		sortRepository.deleteAll();
-		sort.start();
-		sortRepository.save(sort);
-		Shuffle shuffle = new Shuffle();
 		shuffleRepository.deleteAll();
-		shuffle.start();
-		shuffleRepository.save(shuffle);
-		Last last = new Last();
 		lastRepository.deleteAll();
-		last.start();
-		lastRepository.save(last);
-		Duplicates duplicates = new Duplicates();
 		duplicatesRepository.deleteAll();
+		System.out.println("Previous Data Deleted");
+
+		Reverse reverse = new Reverse();
+		Shuffle shuffle = new Shuffle();
+		Duplicates duplicates = new Duplicates();
+		Sort sort = new Sort();
+		Last last = new Last();
+		System.out.println("Classes Created");
+
+		System.out.println("Starting Refresh");
+
+		System.out.println("Running Reverse");
+		reverse.start();
+		System.out.println("Reverse Run. Saving...");
+		reverseRepository.save(reverse);
+		System.out.println("Reverse Updated");
+
+		System.out.println("Running Sort");
+		sort.start();
+		System.out.println("Sort Run. Saving...");
+		sortRepository.save(sort);
+		System.out.println("Sort Updated");
+
+		System.out.println("Running Shuffle");
+		shuffle.start();
+		System.out.println("Shuffle Run. Saving...");
+		shuffleRepository.save(shuffle);
+		System.out.println("Shuffle Updated");
+
+		System.out.println("Running Last");
+		last.start();
+		System.out.println("Last Run. Saving...");
+		lastRepository.save(last);
+		System.out.println("Last Updated");
+
+		System.out.println("Running Duplicates");
 		duplicates.start();
+		System.out.println("Duplicates Run. Saving...");
 		duplicatesRepository.save(duplicates);
+		System.out.println("Duplicates Updated");
+		System.out.println("All Run");
+
 		redirAttrs.addFlashAttribute("message", "All Data Refreshed: ");
 		return new RedirectView("/");
 	}
