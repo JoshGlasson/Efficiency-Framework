@@ -1,13 +1,17 @@
 var path = require('path');
 
 module.exports = {
-    entry: './src/main/js/app.js',
+    entry: {
+    homePage: './src/main/js/app.js',
+    sortPage: './src/main/js/graphs/sort.js',
+    reversePage: './src/main/js/graphs/reverse.js'
+    },
     devtool: 'sourcemaps',
     mode: 'development',
     cache: true,
     output: {
         path: __dirname,
-        filename: './src/main/resources/static/built/bundle.js'
+        filename: './src/main/resources/static/built/[name].js'
     },
     module: {
         rules: [

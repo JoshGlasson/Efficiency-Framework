@@ -64,4 +64,14 @@ public class HomeController {
 		return new RedirectView("/");
 	}
 
+	@GetMapping(value = "/sortgraph")
+	public String sortGraph() {
+		return "sort";
+	}
+
+	@GetMapping(value = "/reversegraph")
+	public String reverseGraph() {
+		return "reverse";
+	}
+
 }

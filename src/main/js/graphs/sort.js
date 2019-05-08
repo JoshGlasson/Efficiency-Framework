@@ -1,4 +1,5 @@
-import React from 'react';
+const React = require('react');
+const ReactDOM = require('react-dom');
 import Plot from 'react-plotly.js';
 
 class Sort extends React.Component {
@@ -45,10 +46,9 @@ constructor(props) {
         };
 
     render() {
-    console.log("x " + this.state.x)
-    console.log("y " + this.state.y)
     return (
     <div>
+    <h3><a href="/" class="btn btn-warning">Back</a></h3>
         <h1>Sort Test</h1>
         <h2><a href="/sort" class={this.state.class} onClick={this.changeTitle} onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLeaveHandler}>{this.state.title}</a></h2>
       <Plot
@@ -90,4 +90,7 @@ constructor(props) {
   }
 }
 
-export default Sort;
+ReactDOM.render(
+	<Sort />,
+	document.getElementById('sort')
+)
