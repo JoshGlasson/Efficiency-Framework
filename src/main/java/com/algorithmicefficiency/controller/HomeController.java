@@ -1,10 +1,7 @@
 package com.algorithmicefficiency.controller;
 
-import com.algorithmicefficiency.model.Reverse;
-import com.algorithmicefficiency.model.Shuffle;
-import com.algorithmicefficiency.model.Sort;
+import com.algorithmicefficiency.model.*;
 import com.algorithmicefficiency.repository.*;
-import com.algorithmicefficiency.repository.SortRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +15,14 @@ public class HomeController {
 	private final SortRepository sortRepository;
 	private final ReverseRepository reverseRepository;
 	private final ShuffleRepository shuffleRepository;
+	private final LastRepository lastRepository;
 
 	@Autowired
-	public HomeController(SortRepository sortRepository, ReverseRepository reverseRepository, ShuffleRepository shuffleRepository) {
+	public HomeController(SortRepository sortRepository, ReverseRepository reverseRepository, ShuffleRepository shuffleRepository, LastRepository lastRepository) {
 		this.sortRepository = sortRepository;
 		this.reverseRepository = reverseRepository;
 		this.shuffleRepository = shuffleRepository;
+		this.lastRepository = lastRepository;
 	}
 
 	@RequestMapping(value = "/")
@@ -64,6 +63,17 @@ public class HomeController {
 		return new RedirectView("/shufflegraph");
 	}
 
+	@GetMapping(value = "/last")
+	public RedirectView last(RedirectAttributes redirAttrs) {
+		Last last = new Last();
+		lastRepository.deleteAll();
+		last.start();
+		lastRepository.save(last);
+		redirAttrs.addFlashAttribute("message", "Last Data Refreshed: ");
+		redirAttrs.addFlashAttribute("newdata", ""+ lastRepository.findAll() +"");
+		return new RedirectView("/lastgraph");
+	}
+
 	@GetMapping(value = "/all")
 	public RedirectView all(RedirectAttributes redirAttrs) {
 		Reverse reverse = new Reverse();
@@ -78,6 +88,10 @@ public class HomeController {
 		shuffleRepository.deleteAll();
 		shuffle.start();
 		shuffleRepository.save(shuffle);
+		Last last = new Last();
+		lastRepository.deleteAll();
+		last.start();
+		lastRepository.save(last);
 		redirAttrs.addFlashAttribute("message", "All Data Refreshed: ");
 		return new RedirectView("/");
 	}
@@ -95,6 +109,11 @@ public class HomeController {
 	@GetMapping(value = "/shufflegraph")
 	public String shuffleGraph() {
 		return "shuffle";
+	}
+
+	@GetMapping(value = "/lastgraph")
+	public String lastGraph() {
+		return "last";
 	}
 
 }

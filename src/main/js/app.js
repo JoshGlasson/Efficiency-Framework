@@ -36,6 +36,7 @@ constructor(props) {
     <h3><a href="/sortgraph" class={"btn btn-primary"+this.state.disablebutton}>Sort</a></h3>
     <h3><a href="/reversegraph" class={"btn btn-secondary"+this.state.disablebutton}>Reverse</a></h3>
     <h3><a href="/shufflegraph" class={"btn btn-info"+this.state.disablebutton}>Shuffle</a></h3>
+    <h3><a href="/lastgraph" class={"btn btn-danger"+this.state.disablebutton}>Last</a></h3>
     </div>
     )
   }
