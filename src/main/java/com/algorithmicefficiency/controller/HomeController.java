@@ -29,7 +29,7 @@ public class HomeController {
 		sortRepository.deleteAll();
 		sort.start();
 		sortRepository.save(sort);
-		System.out.println(sortRepository.findAll());
+//		System.out.println(sortRepository.findAll());
 		return new RedirectView("/");
 	}
 
