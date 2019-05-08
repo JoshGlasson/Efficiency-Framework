@@ -3,14 +3,16 @@ const ReactDOM = require('react-dom');
 
 import Sort from './graphs/sort'
 import Test from './graphs/test'
+import Reverse from './graphs/reverse'
 
 class App extends React.Component {
 
   render() {
     return (
-
-    <Sort />
-
+    <div>
+        <Sort />
+        <Reverse />
+    </div>
     )
   }
 }
