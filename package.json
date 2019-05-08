@@ -7,11 +7,14 @@
     "bootstrap": "^4.3.1",
     "plotly.js": "^1.47.4",
     "react": "^16.4.0",
-    "react-dom": "^16.4.0",
+    "react-dom": ">=16.4.2",
     "react-plotly.js": "^2.3.0",
     "rest": "^2.0.0",
     "webpack": "^4.10.2",
-    "webpack-cli": "^2.1.4"
+    "webpack-cli": "^2.1.4",
+    "merge": ">=1.2.1",
+    "extend": ">=3.0.2",
+    "lodash": ">=4.17.11"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
