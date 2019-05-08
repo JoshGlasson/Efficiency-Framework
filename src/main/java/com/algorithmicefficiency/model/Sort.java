@@ -1,14 +1,12 @@
 package com.algorithmicefficiency.model;
 
+import lombok.Data;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.Arrays;
 import java.util.Random;
-
-
-import javax.persistence.*;
-
-import lombok.Data;
 
 @Data
 @Entity
