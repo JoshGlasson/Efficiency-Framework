@@ -6,7 +6,8 @@ module.exports = {
     sortPage: './src/main/js/graphs/sort.js',
     reversePage: './src/main/js/graphs/reverse.js',
     shufflePage: './src/main/js/graphs/shuffle.js',
-    lastPage: './src/main/js/graphs/last.js'
+    lastPage: './src/main/js/graphs/last.js',
+    duplicatesPage: './src/main/js/graphs/duplicates.js'
     },
     devtool: 'sourcemaps',
     mode: 'development',

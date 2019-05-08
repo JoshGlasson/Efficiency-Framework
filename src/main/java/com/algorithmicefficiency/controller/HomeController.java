@@ -16,13 +16,15 @@ public class HomeController {
 	private final ReverseRepository reverseRepository;
 	private final ShuffleRepository shuffleRepository;
 	private final LastRepository lastRepository;
+	private final DuplicatesRepository duplicatesRepository;
 
 	@Autowired
-	public HomeController(SortRepository sortRepository, ReverseRepository reverseRepository, ShuffleRepository shuffleRepository, LastRepository lastRepository) {
+	public HomeController(SortRepository sortRepository, ReverseRepository reverseRepository, ShuffleRepository shuffleRepository, LastRepository lastRepository, DuplicatesRepository duplicatesRepository) {
 		this.sortRepository = sortRepository;
 		this.reverseRepository = reverseRepository;
 		this.shuffleRepository = shuffleRepository;
 		this.lastRepository = lastRepository;
+		this.duplicatesRepository = duplicatesRepository;
 	}
 
 	@RequestMapping(value = "/")
@@ -74,6 +76,17 @@ public class HomeController {
 		return new RedirectView("/lastgraph");
 	}
 
+	@GetMapping(value = "/duplicates")
+	public RedirectView duplicates(RedirectAttributes redirAttrs) {
+		Duplicates duplicates = new Duplicates();
+		duplicatesRepository.deleteAll();
+		duplicates.start();
+		duplicatesRepository.save(duplicates);
+		redirAttrs.addFlashAttribute("message", "Duplicates Data Refreshed: ");
+		redirAttrs.addFlashAttribute("newdata", ""+ duplicatesRepository.findAll() +"");
+		return new RedirectView("/duplicatesgraph");
+	}
+
 	@GetMapping(value = "/all")
 	public RedirectView all(RedirectAttributes redirAttrs) {
 		Reverse reverse = new Reverse();
@@ -92,6 +105,10 @@ public class HomeController {
 		lastRepository.deleteAll();
 		last.start();
 		lastRepository.save(last);
+		Duplicates duplicates = new Duplicates();
+		duplicatesRepository.deleteAll();
+		duplicates.start();
+		duplicatesRepository.save(duplicates);
 		redirAttrs.addFlashAttribute("message", "All Data Refreshed: ");
 		return new RedirectView("/");
 	}
@@ -114,6 +131,11 @@ public class HomeController {
 	@GetMapping(value = "/lastgraph")
 	public String lastGraph() {
 		return "last";
+	}
+
+	@GetMapping(value = "/duplicatesgraph")
+	public String duplicatesGraph() {
+		return "duplicates";
 	}
 
 }
