@@ -28,6 +28,9 @@ constructor(props) {
     console.log("x " + this.state.x)
     console.log("y " + this.state.y)
     return (
+    <div>
+        <h1>Sort Test</h1>
+        <h2><a href="/sort">Re-do Sort</a></h2>
       <Plot
         data={[
           {
@@ -62,6 +65,7 @@ constructor(props) {
         }
         }
       />
+      </div>
     );
   }
 }
