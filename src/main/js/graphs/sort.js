@@ -5,7 +5,7 @@ import Plot from 'react-plotly.js';
 class Sort extends React.Component {
 constructor(props) {
   super(props)
-    this.state = {x: [], y: [], title: "Refresh Sort Data", class: "list-group-item list-group-item-action", disabled: false};
+    this.state = {x: [], y: [], title: "Refresh Sort Data", class: "list-group-item list-group-item-action", disabled: false, disablebutton: ""};
     this.changeTitle= this.changeTitle.bind(this);
     this.onMouseEnterHandler= this.onMouseEnterHandler.bind(this);
     this.onMouseLeaveHandler= this.onMouseLeaveHandler.bind(this);
@@ -32,6 +32,7 @@ constructor(props) {
       this.setState({ title: "Sort Data Refreshing"});
       this.setState({ class: "list-group-item list-group-item-action disabled" });
       this.setState({ disabled: true });
+      this.setState({ disablebutton: " disabled" });
         };
 
     onMouseEnterHandler() {
@@ -48,7 +49,7 @@ constructor(props) {
     render() {
     return (
     <div>
-    <h3><a href="/" class="btn btn-warning">Back</a></h3>
+    <h3><a href="/" class={"btn btn-warning"+this.state.disablebutton}>Back</a></h3>
         <h1>Sort Test</h1>
         <h2><a href="/sort" class={this.state.class} onClick={this.changeTitle} onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLeaveHandler}>{this.state.title}</a></h2>
       <Plot
