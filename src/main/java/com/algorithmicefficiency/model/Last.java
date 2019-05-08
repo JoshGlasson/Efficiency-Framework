@@ -5,6 +5,8 @@ import lombok.Data;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -41,13 +43,11 @@ public class Last {
     public Double run(int size) {
 
         // Array Set Up
-        int[] arr = new int[size];
+        ArrayList arr = new ArrayList();
 
         for (int x = 1; x <= size; x++) {
-            for (int i = 0; i < arr.length; i++) {
-                Random randomNum = new Random();
-                arr[i] = randomNum.nextInt(size);
-            }
+            Random randomNum = new Random();
+            arr.add(randomNum.nextInt(size));
         }
 
         // Timing of Actual Function
@@ -70,9 +70,9 @@ public class Last {
 
     }
 
-    static String last(int array[]) {
+    static Object last(ArrayList array) {
 
-        return Integer.toString(array[array.length - 1]);
+        return array.toArray()[array.toArray().length - 1];
 
     }
 }

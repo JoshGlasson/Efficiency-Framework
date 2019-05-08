@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -41,13 +42,11 @@ public class Shuffle {
     public Double run(int size) {
 
         // Array Set Up
-        int[] arr = new int[size];
+        ArrayList arr = new ArrayList();
 
         for (int x = 1; x <= size; x++) {
-            for (int i = 0; i < arr.length; i++) {
-                Random randomNum = new Random();
-                arr[i] = randomNum.nextInt(size);
-            }
+            Random randomNum = new Random();
+            arr.add(randomNum.nextInt(size));
         }
 
         // Timing of Actual Function
@@ -70,17 +69,17 @@ public class Shuffle {
 
     }
 
-    static String shuffle(int array[]) {
+    static String shuffle(ArrayList array) {
         Random rgen = new Random();
 
-        for (int i=0; i<array.length; i++) {
-            int randomPosition = rgen.nextInt(array.length);
-            int temp = array[i];
-            array[i] = array[randomPosition];
-            array[randomPosition] = temp;
+        for (int i=0; i<array.toArray().length; i++) {
+            int randomPosition = rgen.nextInt(array.toArray().length);
+            int temp = (int) array.toArray()[i];
+            array.toArray()[i] = array.toArray()[randomPosition];
+            array.toArray()[randomPosition] = temp;
         }
 
-        return Arrays.toString(array);
+        return Arrays.toString(array.toArray());
 
 
     }

@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -41,18 +42,16 @@ public class Reverse {
     public Double run(int size) {
 
         // Array Set Up
-        int[] arr = new int[size];
+        ArrayList arr = new ArrayList();
 
         for (int x = 1; x <= size; x++) {
-            for (int i = 0; i < arr.length; i++) {
-                Random randomNum = new Random();
-                arr[i] = randomNum.nextInt(size);
-            }
+            Random randomNum = new Random();
+            arr.add(randomNum.nextInt(size));
         }
 
         // Timing of Actual Function
         long start = System.nanoTime();
-        reverse(arr, arr.length);
+        reverse(arr, size);
         long finish = System.nanoTime();
         long timeElapsed = finish - start;
 
@@ -70,11 +69,11 @@ public class Reverse {
 
     }
 
-    static String reverse(int a[], int n) {
+    static String reverse(ArrayList a, int n) {
         int[] b = new int[n];
         int j = n;
         for (int i = 0; i < n; i++) {
-            b[j - 1] = a[i];
+            b[j - 1] = (int) a.toArray()[i];
             j = j - 1;
         }
 
