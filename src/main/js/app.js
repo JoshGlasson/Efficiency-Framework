@@ -35,6 +35,7 @@ constructor(props) {
     <h2><a href="/all" class={this.state.class} onClick={this.changeTitle} onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLeaveHandler}>{this.state.title}</a></h2>
     <h3><a href="/sortgraph" class={"btn btn-primary"+this.state.disablebutton}>Sort</a></h3>
     <h3><a href="/reversegraph" class={"btn btn-secondary"+this.state.disablebutton}>Reverse</a></h3>
+    <h3><a href="/shufflegraph" class={"btn btn-info"+this.state.disablebutton}>Shuffle</a></h3>
     </div>
     )
   }
