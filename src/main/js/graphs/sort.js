@@ -29,8 +29,8 @@ constructor(props) {
   }
 
     changeTitle(){
-      this.setState({ title: "Sort Data Refreshing"});
-      this.setState({ class: "list-group-item list-group-item-action disabled" });
+      this.setState({ title: ""});
+      this.setState({ class: "spinner-border text-primary" });
       this.setState({ disabled: true });
       this.setState({ disablebutton: " disabled" });
         };

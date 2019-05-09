@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+
 @Controller
 public class HomeController {
 
@@ -109,6 +112,9 @@ public class HomeController {
 
 	@GetMapping(value = "/all")
 	public RedirectView all(RedirectAttributes redirAttrs) {
+
+		long start = System.nanoTime();
+
 		reverseRepository.deleteAll();
 		sortRepository.deleteAll();
 		shuffleRepository.deleteAll();
@@ -156,7 +162,16 @@ public class HomeController {
 		System.out.println("Duplicates Updated");
 		System.out.println("All Run");
 
-		redirAttrs.addFlashAttribute("message", "All Data Refreshed: ");
+		long finish = System.nanoTime();
+		long timeElapsed = finish - start;
+
+		// Round to milliseconds
+		BigDecimal bd = new BigDecimal(timeElapsed);
+		bd = bd.round(new MathContext(3));
+		double rounded = bd.doubleValue();
+		System.out.println(rounded/1000000 + " Milliseconds");
+
+		redirAttrs.addFlashAttribute("message", "All Data Refreshed");
 		return new RedirectView("/");
 	}
 
