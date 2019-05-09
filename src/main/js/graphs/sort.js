@@ -49,7 +49,7 @@ constructor(props) {
     render() {
     return (
     <div>
-    <h3><a href="/" class={"btn btn-warning"+this.state.disablebutton}>Back</a></h3>
+    <h3><a href="/" class={"btn btn-dark"+this.state.disablebutton}>Back</a></h3>
         <h1>Sort Test</h1>
         <h2><a href="/sort" class={this.state.class} onClick={this.changeTitle} onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLeaveHandler}>{this.state.title}</a></h2>
       <Plot
