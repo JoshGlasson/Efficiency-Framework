@@ -169,7 +169,7 @@ public class HomeController {
 		BigDecimal bd = new BigDecimal(timeElapsed);
 		bd = bd.round(new MathContext(3));
 		double rounded = bd.doubleValue();
-		System.out.println(rounded/1000000 + " Milliseconds");
+		System.out.println(rounded/1000000000 + " Seconds");
 
 		redirAttrs.addFlashAttribute("message", "All Data Refreshed");
 		return new RedirectView("/");
