@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 @Data
@@ -51,7 +52,8 @@ public class Reverse {
 
         // Timing of Actual Function
         long start = System.nanoTime();
-        reverse(arr, size);
+//        reverse(arr.toArray(), size);
+        Collections.reverse(arr);
         long finish = System.nanoTime();
         long timeElapsed = finish - start;
 
@@ -69,18 +71,16 @@ public class Reverse {
 
     }
 
-    static String reverse(ArrayList a, int n) {
-        int[] b = new int[n];
-        int j = n;
-        for (int i = 0; i < n; i++) {
-            b[j - 1] = (int) a.toArray()[i];
-            j = j - 1;
-        }
-
-        return  Arrays.toString(b);
-
-
-    }
+//    static String reverse(Object[] a, int n) {
+//        int[] b = new int[n];
+//        int j = n;
+//        for (int i = 0; i < n; i++) {
+//            b[j - 1] = (int) a[i];
+//            j = j - 1;
+//        }
+//
+//        return  Arrays.toString(b);
+//    }
 }
 
 

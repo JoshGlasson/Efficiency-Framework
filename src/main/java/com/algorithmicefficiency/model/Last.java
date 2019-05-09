@@ -52,7 +52,8 @@ public class Last {
 
         // Timing of Actual Function
         long start = System.nanoTime();
-        last(arr);
+//        last(arr.toArray());
+        arr.get(arr.size()-1);
         long finish = System.nanoTime();
         long timeElapsed = finish - start;
 
@@ -70,11 +71,11 @@ public class Last {
 
     }
 
-    static Object last(ArrayList array) {
-
-        return array.toArray()[array.toArray().length - 1];
-
-    }
+//    static Object last(Object[] array) {
+//
+//        return array[array.length - 1];
+//
+//    }
 }
 
 

@@ -45,6 +45,7 @@ public class Sort{
 
             // Timing of Actual Function
             long start = System.nanoTime();
+//            Arrays.sort(arr.toArray());
             Collections.sort(arr);
             long finish = System.nanoTime();
             long timeElapsed = finish - start;

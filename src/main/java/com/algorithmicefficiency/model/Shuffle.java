@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 @Data
@@ -51,7 +52,8 @@ public class Shuffle {
 
         // Timing of Actual Function
         long start = System.nanoTime();
-        shuffle(arr);
+//        shuffle(arr.toArray());
+        Collections.shuffle(arr);
         long finish = System.nanoTime();
         long timeElapsed = finish - start;
 
@@ -69,20 +71,18 @@ public class Shuffle {
 
     }
 
-    static String shuffle(ArrayList array) {
-        Random rgen = new Random();
-
-        for (int i=0; i<array.toArray().length; i++) {
-            int randomPosition = rgen.nextInt(array.toArray().length);
-            int temp = (int) array.toArray()[i];
-            array.toArray()[i] = array.toArray()[randomPosition];
-            array.toArray()[randomPosition] = temp;
-        }
-
-        return Arrays.toString(array.toArray());
-
-
-    }
+//    static String shuffle(Object[] array) {
+//        Random rgen = new Random();
+//
+//        for (int i=0; i<array.length; i++) {
+//            int randomPosition = rgen.nextInt(array.length);
+//            int temp = (int) array[i];
+//            array[i] = array[randomPosition];
+//            array[randomPosition] = temp;
+//        }
+//
+//        return Arrays.toString(array);
+//    }
 }
 
 
