@@ -169,6 +169,7 @@ public class HomeController {
 		frequencyRepository.deleteAll();
 		System.out.println("Previous Data Deleted");
 
+		System.out.println("Starting");
 		long start = System.nanoTime();
 		frequency.start();
 		long finish = System.nanoTime();
@@ -183,7 +184,7 @@ public class HomeController {
 		double rounded = bd.doubleValue();
 
 		redirAttrs.addFlashAttribute("message", "Frequency Data Refreshed in " + rounded/1000000000 + " Seconds");
-//		redirAttrs.addFlashAttribute("newdata", ""+ duplicatesRepository.findAll() +"");
+//		redirAttrs.addFlashAttribute("newdata", ""+ frequencyRepository.findAll() +"");
 		return new RedirectView("/frequencygraph");
 	}
 
