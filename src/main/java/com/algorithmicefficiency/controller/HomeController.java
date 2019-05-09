@@ -56,7 +56,7 @@ public class HomeController {
 		double rounded = bd.doubleValue();
 
 		redirAttrs.addFlashAttribute("message", "Sort Data Refreshed in " + rounded/1000000000 + " Seconds");
-		redirAttrs.addFlashAttribute("newdata", ""+ sortRepository.findAll() +"");
+//		redirAttrs.addFlashAttribute("newdata", ""+ sortRepository.findAll() +"");
 		return new RedirectView("/sortgraph");
 	}
 
@@ -81,7 +81,7 @@ public class HomeController {
 		double rounded = bd.doubleValue();
 
 		redirAttrs.addFlashAttribute("message", "Reverse Data Refreshed in " + rounded/1000000000 + " Seconds");
-		redirAttrs.addFlashAttribute("newdata", ""+ reverseRepository.findAll() +"");
+//		redirAttrs.addFlashAttribute("newdata", ""+ reverseRepository.findAll() +"");
 		return new RedirectView("/reversegraph");
 	}
 
@@ -106,7 +106,7 @@ public class HomeController {
 		double rounded = bd.doubleValue();
 
 		redirAttrs.addFlashAttribute("message", "Shuffle Data Refreshed in " + rounded/1000000000 + " Seconds");
-		redirAttrs.addFlashAttribute("newdata", ""+ shuffleRepository.findAll() +"");
+//		redirAttrs.addFlashAttribute("newdata", ""+ shuffleRepository.findAll() +"");
 		return new RedirectView("/shufflegraph");
 	}
 
@@ -131,7 +131,7 @@ public class HomeController {
 		double rounded = bd.doubleValue();
 
 		redirAttrs.addFlashAttribute("message", "Last Data Refreshed in " + rounded/1000000000 + " Seconds");
-		redirAttrs.addFlashAttribute("newdata", ""+ lastRepository.findAll() +"");
+//		redirAttrs.addFlashAttribute("newdata", ""+ lastRepository.findAll() +"");
 		return new RedirectView("/lastgraph");
 	}
 
@@ -156,7 +156,7 @@ public class HomeController {
 		double rounded = bd.doubleValue();
 
 		redirAttrs.addFlashAttribute("message", "Duplicates Data Refreshed in " + rounded/1000000000 + " Seconds");
-		redirAttrs.addFlashAttribute("newdata", ""+ duplicatesRepository.findAll() +"");
+//		redirAttrs.addFlashAttribute("newdata", ""+ duplicatesRepository.findAll() +"");
 		return new RedirectView("/duplicatesgraph");
 	}
 
