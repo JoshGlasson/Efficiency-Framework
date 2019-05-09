@@ -61,7 +61,7 @@ constructor(props) {
             y: this.state.y,
             type: 'scatter',
             mode: 'lines+points',
-            marker: {color: 'red'},
+            marker: {color: '#d9534f'},
           },
         ]}
         layout={

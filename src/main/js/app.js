@@ -122,7 +122,7 @@ constructor(props) {
     <div class="form-inline">
     <h3><a href="/sortgraph" class={"btn btn-primary"+this.state.disablebutton}>Sort</a></h3>
     <h3><a href="/reversegraph" class={"btn btn-secondary"+this.state.disablebutton}>Reverse</a></h3>
-    <h3><a href="/shufflegraph" class={"btn btn-info"+this.state.disablebutton}>Shuffle</a></h3>
+    <h3><a href="/shufflegraph" class={"btn btn-success"+this.state.disablebutton}>Shuffle</a></h3>
     <h3><a href="/lastgraph" class={"btn btn-danger"+this.state.disablebutton}>Last</a></h3>
     <h3><a href="/duplicatesgraph" class={"btn btn-warning"+this.state.disablebutton}>Duplicates</a></h3>
     </div>
@@ -133,6 +133,7 @@ constructor(props) {
                 y: this.state.sorty,
                 type: 'scatter',
                 mode: 'lines+points',
+                marker: {color: '#0275d8'},
                 name: "Sort",
               },
               {
@@ -140,6 +141,7 @@ constructor(props) {
                   y: this.state.reversey,
                   type: 'scatter',
                   mode: 'lines+points',
+                  marker: {color: '#868e96'},
                   name: "Reverse",
                 },
                 {
@@ -147,6 +149,7 @@ constructor(props) {
                   y: this.state.shuffley,
                   type: 'scatter',
                   mode: 'lines+points',
+                  marker: {color: '#5cb85c'},
                   name: "Shuffle",
                 },
                 {
@@ -154,6 +157,7 @@ constructor(props) {
                   y: this.state.lasty,
                   type: 'scatter',
                   mode: 'lines+points',
+                  marker: {color: '#d9534f'},
                   name: "Last",
                 },
                 {
@@ -161,6 +165,7 @@ constructor(props) {
                     y: this.state.duplicatey,
                     type: 'scatter',
                     mode: 'lines+points',
+                    marker: {color: '#f0ad4e'},
                     name: "Duplicates",
                   },
             ]}
