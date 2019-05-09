@@ -41,11 +41,21 @@ public class HomeController {
 		System.out.println("Class Created");
 		sortRepository.deleteAll();
 		System.out.println("Previous Data Deleted");
+
+		long start = System.nanoTime();
 		sort.start();
+		long finish = System.nanoTime();
+		long timeElapsed = finish - start;
+
 		System.out.println("Data Run. Saving...");
 		sortRepository.save(sort);
 		System.out.println("Finished Updating");
-		redirAttrs.addFlashAttribute("message", "Sort Data Refreshed: ");
+
+		BigDecimal bd = new BigDecimal(timeElapsed);
+		bd = bd.round(new MathContext(3));
+		double rounded = bd.doubleValue();
+
+		redirAttrs.addFlashAttribute("message", "Sort Data Refreshed in " + rounded/1000000000 + " Seconds");
 		redirAttrs.addFlashAttribute("newdata", ""+ sortRepository.findAll() +"");
 		return new RedirectView("/sortgraph");
 	}
@@ -56,11 +66,21 @@ public class HomeController {
 		System.out.println("Class Created");
 		reverseRepository.deleteAll();
 		System.out.println("Previous Data Deleted");
+
+		long start = System.nanoTime();
 		reverse.start();
+		long finish = System.nanoTime();
+		long timeElapsed = finish - start;
+
 		System.out.println("Data Run. Saving...");
 		reverseRepository.save(reverse);
 		System.out.println("Finished Updating");
-		redirAttrs.addFlashAttribute("message", "Reverse Data Refreshed: ");
+
+		BigDecimal bd = new BigDecimal(timeElapsed);
+		bd = bd.round(new MathContext(3));
+		double rounded = bd.doubleValue();
+
+		redirAttrs.addFlashAttribute("message", "Reverse Data Refreshed in " + rounded/1000000000 + " Seconds");
 		redirAttrs.addFlashAttribute("newdata", ""+ reverseRepository.findAll() +"");
 		return new RedirectView("/reversegraph");
 	}
@@ -71,11 +91,21 @@ public class HomeController {
 		System.out.println("Class Created");
 		shuffleRepository.deleteAll();
 		System.out.println("Previous Data Deleted");
+
+		long start = System.nanoTime();
 		shuffle.start();
+		long finish = System.nanoTime();
+		long timeElapsed = finish - start;
+
 		System.out.println("Data Run. Saving...");
 		shuffleRepository.save(shuffle);
 		System.out.println("Finished Updating");
-		redirAttrs.addFlashAttribute("message", "Shuffle Data Refreshed: ");
+
+		BigDecimal bd = new BigDecimal(timeElapsed);
+		bd = bd.round(new MathContext(3));
+		double rounded = bd.doubleValue();
+
+		redirAttrs.addFlashAttribute("message", "Shuffle Data Refreshed in " + rounded/1000000000 + " Seconds");
 		redirAttrs.addFlashAttribute("newdata", ""+ shuffleRepository.findAll() +"");
 		return new RedirectView("/shufflegraph");
 	}
@@ -86,11 +116,21 @@ public class HomeController {
 		System.out.println("Class Created");
 		lastRepository.deleteAll();
 		System.out.println("Previous Data Deleted");
+
+		long start = System.nanoTime();
 		last.start();
+		long finish = System.nanoTime();
+		long timeElapsed = finish - start;
+
 		System.out.println("Data Run. Saving...");
 		lastRepository.save(last);
 		System.out.println("Finished Updating");
-		redirAttrs.addFlashAttribute("message", "Last Data Refreshed: ");
+
+		BigDecimal bd = new BigDecimal(timeElapsed);
+		bd = bd.round(new MathContext(3));
+		double rounded = bd.doubleValue();
+
+		redirAttrs.addFlashAttribute("message", "Last Data Refreshed in " + rounded/1000000000 + " Seconds");
 		redirAttrs.addFlashAttribute("newdata", ""+ lastRepository.findAll() +"");
 		return new RedirectView("/lastgraph");
 	}
@@ -101,11 +141,21 @@ public class HomeController {
 		System.out.println("Class Created");
 		duplicatesRepository.deleteAll();
 		System.out.println("Previous Data Deleted");
+
+		long start = System.nanoTime();
 		duplicates.start();
+		long finish = System.nanoTime();
+		long timeElapsed = finish - start;
+
 		System.out.println("Data Run. Saving...");
 		duplicatesRepository.save(duplicates);
 		System.out.println("Finished Updating");
-		redirAttrs.addFlashAttribute("message", "Duplicates Data Refreshed: ");
+
+		BigDecimal bd = new BigDecimal(timeElapsed);
+		bd = bd.round(new MathContext(3));
+		double rounded = bd.doubleValue();
+
+		redirAttrs.addFlashAttribute("message", "Duplicates Data Refreshed in " + rounded/1000000000 + " Seconds");
 		redirAttrs.addFlashAttribute("newdata", ""+ duplicatesRepository.findAll() +"");
 		return new RedirectView("/duplicatesgraph");
 	}
@@ -171,7 +221,7 @@ public class HomeController {
 		double rounded = bd.doubleValue();
 		System.out.println(rounded/1000000000 + " Seconds");
 
-		redirAttrs.addFlashAttribute("message", "All Data Refreshed");
+		redirAttrs.addFlashAttribute("message", "All Data Refreshed  in " + rounded/1000000000 + " Seconds");
 		return new RedirectView("/");
 	}
 
