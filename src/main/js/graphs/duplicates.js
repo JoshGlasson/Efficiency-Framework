@@ -53,7 +53,7 @@ constructor(props) {
     <div>
     <h3><a href="/" class={"btn btn-warning"+this.state.disablebutton}>Back</a></h3>
         <h1>Duplicates Test</h1>
-        <h2><a href="/last" class={this.state.class} onClick={this.changeTitle} onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLeaveHandler}>{this.state.title}</a></h2>
+        <h2><a href="/duplicates" class={this.state.class} onClick={this.changeTitle} onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLeaveHandler}>{this.state.title}</a></h2>
       <Plot
         data={[
           {
