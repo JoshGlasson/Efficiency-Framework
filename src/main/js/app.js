@@ -129,13 +129,6 @@ constructor(props) {
     <Plot
             data={[
               {
-                x: this.state.duplicatex,
-                y: this.state.duplicatey,
-                type: 'scatter',
-                mode: 'lines+points',
-                name: "Duplicates",
-              },
-              {
                 x: this.state.sortx,
                 y: this.state.sorty,
                 type: 'scatter',
@@ -150,6 +143,13 @@ constructor(props) {
                   name: "Reverse",
                 },
                 {
+                  x: this.state.shufflex,
+                  y: this.state.shuffley,
+                  type: 'scatter',
+                  mode: 'lines+points',
+                  name: "Shuffle",
+                },
+                {
                   x: this.state.lastx,
                   y: this.state.lasty,
                   type: 'scatter',
@@ -157,12 +157,12 @@ constructor(props) {
                   name: "Last",
                 },
                 {
-                  x: this.state.shufflex,
-                  y: this.state.shuffley,
-                  type: 'scatter',
-                  mode: 'lines+points',
-                  name: "Shuffle",
-                },
+                    x: this.state.duplicatex,
+                    y: this.state.duplicatey,
+                    type: 'scatter',
+                    mode: 'lines+points',
+                    name: "Duplicates",
+                  },
             ]}
             layout={
             {
