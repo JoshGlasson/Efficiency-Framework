@@ -20,18 +20,18 @@ public class Frequency {
     @Column(name = "timetaken", nullable = false)
     private String[] timeTaken = new String[arraySize.length];
 
-    public static void main(String[] args)
-    {
-        ArrayList<Integer> arr = new ArrayList<>();
-        arr.add(3);
-        arr.add(1);
-        arr.add(1);
-        arr.add(1);
-        arr.add(3);
-        arr.add(3);
-        arr.add(2);
-        System.out.println(frequency(arr));
-    }
+//    public static void main(String[] args)
+//    {
+//        ArrayList<Integer> arr = new ArrayList<>();
+//        arr.add(3);
+//        arr.add(1);
+//        arr.add(1);
+//        arr.add(1);
+//        arr.add(3);
+//        arr.add(3);
+//        arr.add(2);
+//        System.out.println(frequency(arr));
+//    }
 
     public Frequency() {
 
@@ -55,7 +55,7 @@ public class Frequency {
 
         // Timing of Actual Function
         long start = System.nanoTime();
-//        frequency(arr);
+        frequency(arr);
         long finish = System.nanoTime();
         long timeElapsed = finish - start;
 
