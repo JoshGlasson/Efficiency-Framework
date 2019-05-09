@@ -20,14 +20,16 @@ public class HomeController {
 	private final ShuffleRepository shuffleRepository;
 	private final LastRepository lastRepository;
 	private final DuplicatesRepository duplicatesRepository;
+	private final FrequencyRepository frequencyRepository;
 
 	@Autowired
-	public HomeController(SortRepository sortRepository, ReverseRepository reverseRepository, ShuffleRepository shuffleRepository, LastRepository lastRepository, DuplicatesRepository duplicatesRepository) {
+	public HomeController(SortRepository sortRepository, ReverseRepository reverseRepository, ShuffleRepository shuffleRepository, LastRepository lastRepository, DuplicatesRepository duplicatesRepository, FrequencyRepository frequencyRepository) {
 		this.sortRepository = sortRepository;
 		this.reverseRepository = reverseRepository;
 		this.shuffleRepository = shuffleRepository;
 		this.lastRepository = lastRepository;
 		this.duplicatesRepository = duplicatesRepository;
+		this.frequencyRepository = frequencyRepository;
 	}
 
 	@RequestMapping(value = "/")
@@ -160,6 +162,31 @@ public class HomeController {
 		return new RedirectView("/duplicatesgraph");
 	}
 
+	@GetMapping(value = "/frequency")
+	public RedirectView frequency(RedirectAttributes redirAttrs) {
+		Frequency frequency = new Frequency();
+		System.out.println("Class Created");
+		frequencyRepository.deleteAll();
+		System.out.println("Previous Data Deleted");
+
+		long start = System.nanoTime();
+		frequency.start();
+		long finish = System.nanoTime();
+		long timeElapsed = finish - start;
+
+		System.out.println("Data Run. Saving...");
+		frequencyRepository.save(frequency);
+		System.out.println("Finished Updating");
+
+		BigDecimal bd = new BigDecimal(timeElapsed);
+		bd = bd.round(new MathContext(3));
+		double rounded = bd.doubleValue();
+
+		redirAttrs.addFlashAttribute("message", "Frequency Data Refreshed in " + rounded/1000000000 + " Seconds");
+//		redirAttrs.addFlashAttribute("newdata", ""+ duplicatesRepository.findAll() +"");
+		return new RedirectView("/frequencygraph");
+	}
+
 	@GetMapping(value = "/all")
 	public RedirectView all(RedirectAttributes redirAttrs) {
 
@@ -170,6 +197,7 @@ public class HomeController {
 		shuffleRepository.deleteAll();
 		lastRepository.deleteAll();
 		duplicatesRepository.deleteAll();
+		frequencyRepository.deleteAll();
 		System.out.println("Previous Data Deleted");
 
 		Reverse reverse = new Reverse();
@@ -177,6 +205,7 @@ public class HomeController {
 		Duplicates duplicates = new Duplicates();
 		Sort sort = new Sort();
 		Last last = new Last();
+		Frequency frequency = new Frequency();
 		System.out.println("Classes Created");
 
 		System.out.println("Starting Refresh");
@@ -210,6 +239,12 @@ public class HomeController {
 		System.out.println("Duplicates Run. Saving...");
 		duplicatesRepository.save(duplicates);
 		System.out.println("Duplicates Updated");
+
+		System.out.println("Running Frequency");
+		frequency.start();
+		System.out.println("Frequency Run. Saving...");
+		frequencyRepository.save(frequency);
+		System.out.println("Frequency Updated");
 		System.out.println("All Run");
 
 		long finish = System.nanoTime();
@@ -250,4 +285,8 @@ public class HomeController {
 		return "duplicates";
 	}
 
+	@GetMapping(value = "/frequencygraph")
+	public String frequencyGraph() {
+		return "frequency";
+	}
 }

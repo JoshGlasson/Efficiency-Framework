@@ -5,7 +5,7 @@ import Plot from 'react-plotly.js';
 class App extends React.Component {
 constructor(props) {
   super(props);
-    this.state = {title: "Refresh All Data", class: "list-group-item list-group-item-action", disablebutton: "", disabled: false, sortx: [], sorty: [], reversex: [], reversey: [], shufflex: [], shuffley: [], lastx: [], lasty: [], duplicatex: [], duplicatey: []};
+    this.state = {title: "Refresh All Data", class: "list-group-item list-group-item-action", disablebutton: "", disabled: false, sortx: [], sorty: [], reversex: [], reversey: [], shufflex: [], shuffley: [], lastx: [], lasty: [], duplicatex: [], duplicatey: [], frequencyx: [], frequencyy: []};
     this.changeTitle= this.changeTitle.bind(this);
     this.onMouseEnterHandler= this.onMouseEnterHandler.bind(this);
     this.onMouseLeaveHandler= this.onMouseLeaveHandler.bind(this);
@@ -94,6 +94,23 @@ constructor(props) {
                        this.setState(state => ({duplicatex: json._embedded.duplicateses[0].arraySize, duplicatey: json._embedded.duplicateses[0].timeTaken}))
                        console.log(this.state.duplicatex + this.state.duplicatey);
                      });
+    fetch('/api/frequencies', {
+                      method: 'GET',
+                      headers: {
+                      'Content-Type': 'application/json',
+                      },
+                      credentials: 'same-origin'
+                      }).then((response) => {
+                           if(response.ok) {
+                             return response.json();
+                           } else {
+                             throw new Error('Server response wasn\'t OK');
+                           }
+                         })
+                         .then((json) => {
+                           this.setState(state => ({frequencyx: json._embedded.frequencies[0].arraySize, frequencyy: json._embedded.frequencies[0].timeTaken}))
+                           console.log(this.state.frequencyx + this.state.frequencyy);
+                         });
   }
 
     changeTitle(){
@@ -125,6 +142,8 @@ constructor(props) {
     <a href="/shufflegraph" class={"btn btn-success"+this.state.disablebutton} style={{ minWidth:100, maxWidth:200, width:150 }}>Shuffle</a>
     <a href="/lastgraph" class={"btn btn-danger"+this.state.disablebutton} style={{ minWidth:100, maxWidth:200, width:150 }}>Last</a>
     <a href="/duplicatesgraph" class={"btn btn-warning"+this.state.disablebutton} style={{ minWidth:100, maxWidth:200, width:150 }}>Duplicates</a>
+    <a href="/frequencygraph" class={"btn btn-info"+this.state.disablebutton} style={{ minWidth:100, maxWidth:200, width:150 }}>Frequency</a>
+
     </div>
     <Plot
             data={[
@@ -168,6 +187,14 @@ constructor(props) {
                     marker: {color: '#f0ad4e'},
                     name: "Duplicates",
                   },
+                  {
+                  x: this.state.frequencyx,
+                  y: this.state.frequencyy,
+                  type: 'scatter',
+                  mode: 'lines+points',
+                  marker: {color: '#5bc0de'},
+                  name: "Frequency",
+                },
             ]}
             layout={
             {

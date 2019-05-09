@@ -7,7 +7,8 @@ module.exports = {
     reversePage: './src/main/js/graphs/reverse.js',
     shufflePage: './src/main/js/graphs/shuffle.js',
     lastPage: './src/main/js/graphs/last.js',
-    duplicatesPage: './src/main/js/graphs/duplicates.js'
+    duplicatesPage: './src/main/js/graphs/duplicates.js',
+    frequencyPage: './src/main/js/graphs/frequency.js'
     },
     devtool: 'sourcemaps',
     mode: 'development',
