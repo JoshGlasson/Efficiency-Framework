@@ -116,15 +116,15 @@ constructor(props) {
 
   render() {
     return (
-    <div>
+    <div style={{ maxWidth: 1500 }}>
     <h1>Testing Algorithmic Efficiency</h1>
     <h2><a href="/all" class={this.state.class} onClick={this.changeTitle} onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLeaveHandler}>{this.state.title}</a></h2>
-    <div class="form-inline">
-    <h3><a href="/sortgraph" class={"btn btn-primary"+this.state.disablebutton}>Sort</a></h3>
-    <h3><a href="/reversegraph" class={"btn btn-secondary"+this.state.disablebutton}>Reverse</a></h3>
-    <h3><a href="/shufflegraph" class={"btn btn-success"+this.state.disablebutton}>Shuffle</a></h3>
-    <h3><a href="/lastgraph" class={"btn btn-danger"+this.state.disablebutton}>Last</a></h3>
-    <h3><a href="/duplicatesgraph" class={"btn btn-warning"+this.state.disablebutton}>Duplicates</a></h3>
+    <div style={{ display: 'inline-block' }}>
+    <a href="/sortgraph" class={"btn btn-primary"+this.state.disablebutton} style={{ minWidth:100, maxWidth:200, width:150 }}>Sort</a>
+    <a href="/reversegraph" class={"btn btn-secondary"+this.state.disablebutton} style={{ minWidth:100, maxWidth:200, width:150 }}>Reverse</a>
+    <a href="/shufflegraph" class={"btn btn-success"+this.state.disablebutton} style={{ minWidth:100, maxWidth:200, width:150 }}>Shuffle</a>
+    <a href="/lastgraph" class={"btn btn-danger"+this.state.disablebutton} style={{ minWidth:100, maxWidth:200, width:150 }}>Last</a>
+    <a href="/duplicatesgraph" class={"btn btn-warning"+this.state.disablebutton} style={{ minWidth:100, maxWidth:200, width:150 }}>Duplicates</a>
     </div>
     <Plot
             data={[

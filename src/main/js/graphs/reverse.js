@@ -50,9 +50,9 @@ constructor(props) {
     console.log("x " + this.state.x)
     console.log("y " + this.state.y)
     return (
-    <div>
-    <h3><a href="/" class={"btn btn-dark"+this.state.disablebutton}>Back</a></h3>
-        <h1>Reverse Test</h1>
+    <div style={{ maxWidth: 1500 }}>
+        <h3><a href="/" class={"btn btn-dark"+this.state.disablebutton} style={{ minWidth:100, maxWidth:200, width:150 }}>Back</a></h3>
+        <h1 style={{ color: '#868e96' }}>Reverse Test</h1>
         <h2><a href="/reverse" class={this.state.class} onClick={this.changeTitle} onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLeaveHandler}>{this.state.title}</a></h2>
       <Plot
         data={[
