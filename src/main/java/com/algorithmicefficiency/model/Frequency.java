@@ -90,6 +90,7 @@ public class Frequency {
 
     }
 
+    // O(n^2)
 //    static Object frequency(ArrayList<Integer> array) {
 //        ArrayList b = new ArrayList();
 //        Map<Integer,Integer> map = new HashMap<>();
@@ -153,6 +154,7 @@ public class Frequency {
 //        return map;
 //    }
 
+    // O(n)
     static Object frequency(ArrayList<Integer> array) {
         ArrayList c = new ArrayList();
         Map<Integer,Integer> map = new HashMap<>();

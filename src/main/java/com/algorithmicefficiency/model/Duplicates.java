@@ -22,12 +22,12 @@ public class Duplicates {
     @Column(name = "timetaken", nullable = false)
     private String[] timeTaken = new String[arraySize.length];
 
-    public static void main(String[] args)
-    {
-        Object[] arr = {1, 1, 1, 1, 1, 1, 2, 2, 2, 10, 10, 10, 40, 40, 50};
-        duplicates(arr);
-        System.out.println(duplicates(arr));
-    }
+//    public static void main(String[] args)
+//    {
+//        Object[] arr = {1, 1, 1, 1, 1, 1, 2, 2, 2, 10, 10, 10, 40, 40, 50};
+//        duplicates(arr);
+//        System.out.println(duplicates(arr));
+//    }
 
     public Duplicates() {
 
@@ -69,6 +69,7 @@ public class Duplicates {
 
     }
 
+//    // O(n^2)
 //    static String duplicates(Object[] array) {
 //        ArrayList b = new ArrayList();
 //        for (int i = 0; i < array.length; i++)
@@ -81,6 +82,7 @@ public class Duplicates {
 //    return Arrays.toString(b.toArray());
 //    }
 
+    // O(n)
     static String duplicates(Object[] array) {
         ArrayList b = new ArrayList();
         for (int i = 0; i < array.length - 1; i++)
