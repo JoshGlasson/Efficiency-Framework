@@ -36,7 +36,7 @@ public class Frequency {
 //    {
 //        ArrayList<Integer> arr = new ArrayList<>();
 //        arr.add(4);
-//        arr.add(3);
+//        arr.add(4);
 //        arr.add(1);
 //        arr.add(1);
 //        arr.add(2);
@@ -45,7 +45,6 @@ public class Frequency {
 //        arr.add(3);
 //        arr.add(2);
 //
-//        Collections.sort(arr);
 //        System.out.println(arr);
 //        System.out.println(frequency(arr));
 //    }
@@ -71,7 +70,7 @@ public class Frequency {
         }
 
         // Timing of Actual Function
-        Collections.sort(arr);
+//        Collections.sort(arr);
         long start = System.nanoTime();
         frequency(arr);
         long finish = System.nanoTime();
@@ -169,7 +168,6 @@ public class Frequency {
                             toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2,
                                     LinkedHashMap::new));
         while(sorted.containsValue(Collections.max(map.values()))) {
-
             c.add(Arrays.asList(sorted.keySet().toArray()).get(sorted.size()-1));
             sorted.remove(c.get(c.size()-1));
         }
