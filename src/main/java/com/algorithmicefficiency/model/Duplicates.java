@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 @Data
@@ -50,6 +51,7 @@ public class Duplicates {
         }
 
         // Timing of Actual Function
+        Collections.sort(arr);
         long start = System.nanoTime();
         duplicates(arr.toArray());
         long finish = System.nanoTime();

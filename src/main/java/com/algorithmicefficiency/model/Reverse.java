@@ -25,9 +25,15 @@ public class Reverse {
 
 //    public static void main(String[] args)
 //    {
-//        int [] arr = {10, 20, 30, 40, 50};
-//        reverse(arr, arr.length);
-//        System.out.println(reverse(arr, arr.length));
+//        ArrayList arr = new ArrayList();
+//        arr.add(10);
+//        arr.add(20);
+//        arr.add(30);
+//        arr.add(40);
+//        arr.add(50);
+//        arr.add(60);
+//        arr.add(70);
+//        System.out.println(reverse(arr, arr.size()));
 //    }
 
     public Reverse() {
@@ -52,7 +58,7 @@ public class Reverse {
 
         // Timing of Actual Function
         long start = System.nanoTime();
-//        reverse(arr.toArray(), size);
+//        reverse(arr, arr.size());
         Collections.reverse(arr);
         long finish = System.nanoTime();
         long timeElapsed = finish - start;
@@ -71,16 +77,27 @@ public class Reverse {
 
     }
 
-//    static String reverse(Object[] a, int n) {
-//        int[] b = new int[n];
-//        int j = n;
-//        for (int i = 0; i < n; i++) {
-//            b[j - 1] = (int) a[i];
-//            j = j - 1;
+//    static Object reverse(ArrayList a) {
+//        ArrayList b = new ArrayList();
+//
+//        for (int i = 1; i <= a.size()/2; i++) {
+//            b.add(b.size()-1, a.get(i));
 //        }
 //
-//        return  Arrays.toString(b);
+//        return b;
 //    }
+
+
+//
+//    static Object reverse(ArrayList a, int n) {
+//        for (int i = 0; i <= n; i++) {
+//            a.add(i, a.get(n-1));
+//            a.remove(n);
+//        }
+//        return a;
+//    }
+
+
 }
 
 
